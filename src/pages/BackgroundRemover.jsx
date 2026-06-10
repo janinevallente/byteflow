@@ -1,11 +1,14 @@
 import { useState, useRef, useCallback } from 'react'
-import { Eraser, Upload, Download, Loader2, Image as ImageIcon, X } from 'lucide-react'
+import { Eraser, Upload, Download, Image as ImageIcon, X } from 'lucide-react'
+import { removeBackground } from '@imgly/background-removal'
 
 export default function BackgroundRemover() {
   const [image, setImage] = useState(null)
   const [preview, setPreview] = useState(null)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [progressText, setProgressText] = useState('')
   const [error, setError] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const inputRef = useRef()
@@ -17,6 +20,8 @@ export default function BackgroundRemover() {
     }
     setError(null)
     setResult(null)
+    setProgress(0)
+    setProgressText('')
     setImage(file)
     setPreview(URL.createObjectURL(file))
   }
@@ -28,46 +33,33 @@ export default function BackgroundRemover() {
   const handleDragOver = (e) => { e.preventDefault(); setDragOver(true) }
   const handleDragLeave = () => setDragOver(false)
 
-  const removeBackground = async () => {
+  const handleRemoveBackground = async () => {
     if (!image) return
     setLoading(true)
     setError(null)
     setResult(null)
+    setProgress(0)
+    setProgressText('Loading AI model…')
+
     try {
-      const img = new Image()
-      img.src = preview
-      await new Promise(r => { img.onload = r })
-      const canvas = document.createElement('canvas')
-      canvas.width = img.width
-      canvas.height = img.height
-      const ctx = canvas.getContext('2d')
-      ctx.drawImage(img, 0, 0)
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-      const data = imageData.data
-      const samplePixels = [
-        [0, 0], [img.width - 1, 0],
-        [0, img.height - 1], [img.width - 1, img.height - 1],
-        [Math.floor(img.width / 2), 0],
-      ]
-      let bgR = 0, bgG = 0, bgB = 0
-      samplePixels.forEach(([x, y]) => {
-        const idx = (y * img.width + x) * 4
-        bgR += data[idx]; bgG += data[idx + 1]; bgB += data[idx + 2]
+      const resultBlob = await removeBackground(image, {
+        progress: (key, current, total) => {
+          if (total > 0) {
+            const pct = Math.round((current / total) * 100)
+            setProgress(pct)
+            if (key.includes('fetch')) setProgressText(`Downloading model… ${pct}%`)
+            else if (key.includes('compute')) setProgressText(`Processing… ${pct}%`)
+            else setProgressText(`${pct}%`)
+          }
+        },
       })
-      bgR = Math.round(bgR / samplePixels.length)
-      bgG = Math.round(bgG / samplePixels.length)
-      bgB = Math.round(bgB / samplePixels.length)
-      const threshold = 60
-      for (let i = 0; i < data.length; i += 4) {
-        if (Math.abs(data[i] - bgR) + Math.abs(data[i + 1] - bgG) + Math.abs(data[i + 2] - bgB) < threshold * 3) {
-          data[i + 3] = 0
-        }
-      }
-      ctx.putImageData(imageData, 0, 0)
-      setResult(canvas.toDataURL('image/png'))
-    } catch {
-      setError('Failed to process image. Please try another file.')
+      setResult(URL.createObjectURL(resultBlob))
+      setProgressText('Done!')
+    } catch (err) {
+      console.error(err)
+      setError('Failed to remove background. Please try another image.')
     }
+
     setLoading(false)
   }
 
@@ -80,10 +72,11 @@ export default function BackgroundRemover() {
 
   const reset = () => {
     setImage(null); setPreview(null); setResult(null); setError(null)
+    setProgress(0); setProgressText('')
     if (inputRef.current) inputRef.current.value = ''
   }
 
-  const checkerboard = { background: 'repeating-conic-gradient(#e0e0e0 0% 25%, white 0% 50%) 0 0 / 16px 16px' }
+  const checkerboard = { background: 'repeating-conic-gradient(#3a3a3a 0% 25%, #2a2a2a 0% 50%) 0 0 / 16px 16px' }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
@@ -96,13 +89,13 @@ export default function BackgroundRemover() {
           <h1 className="text-2xl font-semibold text-textHeader m-0">Background Remover</h1>
         </div>
         <p className="text-text text-sm m-0">
-          Remove the background from any image instantly, right in your browser. Output is a transparent PNG.
+          Remove backgrounds from any image using AI — runs entirely in your browser. Output is a transparent PNG.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upload Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 shadow-shadowColor">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Upload Image</h2>
             {image && (
@@ -141,8 +134,24 @@ export default function BackgroundRemover() {
             </div>
           )}
 
+          {/* Progress bar */}
+          {loading && (
+            <div className="mt-4">
+              <div className="flex justify-between text-xs text-text mb-1.5">
+                <span>{progressText}</span>
+                <span>{progress}%</span>
+              </div>
+              <div className="w-full bg-borderColor rounded-full h-1.5 overflow-hidden">
+                <div
+                  className="bg-accent h-1.5 rounded-full transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
           <button
-            onClick={removeBackground}
+            onClick={handleRemoveBackground}
             disabled={!image || loading}
             className={`w-full mt-4 py-2.5 rounded-xl text-sm font-semibold transition-all border-none
               ${image && !loading
@@ -150,16 +159,12 @@ export default function BackgroundRemover() {
                 : 'bg-borderColor text-text cursor-not-allowed'
               }`}
           >
-            {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader2 size={16} className="animate-spin" /> Processing…
-              </span>
-            ) : 'Remove Background'}
+            {loading ? 'Processing…' : 'Remove Background'}
           </button>
         </div>
 
         {/* Result Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 shadow-shadowColor">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Result</h2>
             {result && (
@@ -184,7 +189,7 @@ export default function BackgroundRemover() {
           </div>
 
           <div className="mt-4 p-3 bg-accentBg rounded-[10px] text-xs text-text">
-            <span className="text-accent font-semibold">Note:</span> This tool uses edge detection on sampled corner pixels. For best results, use images with a plain or uniform background.
+            <span className="text-accent font-semibold">Note:</span> The first run downloads the AI model (~20MB). Subsequent runs are instant — the model is cached in your browser.
           </div>
         </div>
       </div>
