@@ -277,7 +277,7 @@ export default function ImageConverter() {
           {/* Format guide */}
           <div className="bg-backgroundCard border border-borderColor rounded-2xl p-5 shadow-shadowColor">
             <h2 className="text-sm font-semibold text-textHeader mb-3 m-0">Format Guide</h2>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-text">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-xs text-text">
               {FORMAT_INFO.map(([fmt, desc]) => (
                 <div key={fmt} className="flex gap-2 py-0.5">
                   <span className="text-accent font-semibold min-w-[42px]">{fmt}</span>
