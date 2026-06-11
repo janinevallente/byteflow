@@ -11,6 +11,11 @@ import {
   Scissors,
   CircleDashed,
   House,
+  Palette,
+  Contrast,
+  Blend,
+  Sparkles,
+  Shuffle,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -29,6 +34,12 @@ const categories = [
     label: 'Colors',
     tools: [
       { id: 'pixel-picker', label: 'Pixel Picker', icon: Pipette },
+      { id: 'color-converter', label: 'Color Converter', icon: Palette },
+      { id: 'contrast-checker', label: 'Contrast Checker', icon: Contrast },
+      { id: 'gradient-generator', label: 'Gradient Generator', icon: Blend },
+      // { id: 'harmony-generator', label: 'Harmony Generator', icon: Sparkles },
+      { id: 'palette-extractor', label: 'Palette Extractor', icon: ImageIcon },
+      { id: 'palette-generator', label: 'Palette Generator', icon: Shuffle },
     ],
   },
 ]

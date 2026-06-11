@@ -188,7 +188,7 @@ export default function BackgroundRemover() {
             )}
           </div>
 
-          <div className="mt-4 p-3 bg-accentBg rounded-[10px] text-xs text-text">
+          <div className="mt-4 p-3 bg-accentBg border border-accentBorder rounded-xl text-xs text-text">
             <span className="text-accent font-semibold">Note:</span> The first run downloads the AI model (~20MB). Subsequent runs are instant — the model is cached in your browser.
           </div>
         </div>

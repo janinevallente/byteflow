@@ -3,44 +3,77 @@ import {
   Scissors,
   CircleDashed, 
   ImageIcon, 
-  Pipette 
+  Pipette,
+  Palette,
+  Contrast,
+  Blend,
+  Sparkles,
+  Shuffle,
 } from 'lucide-react'
 
 const tools = [
+  // Image & Assets Category
   {
     id: 'bg-remover',
     icon: Eraser,
     label: 'Background Remover',
     description: 'Remove backgrounds from images instantly using edge detection. Export as transparent PNG.',
-    tags: ['Images', 'PNG', 'Free'],
-  },
-    {
-    id: 'image-clipper',
-    icon: Scissors,
-    label: 'Image Clipper',
-    description: 'Automatically trim transparent edges from PNG images. Perfect for icons, logos, and illustrations.',
-    tags: ['Images', 'PNG', 'Trim'],
-  },
-    {
-    id: 'circle-cropper',
-    icon: CircleDashed,
-    label: 'Circle Cropper',
-    description: 'Crop any image into a perfect circle. Drag & resize the circle overlay, then export as transparent PNG.',
-    tags: ['Images', 'Circle', 'Avatar'],
   },
   {
     id: 'image-converter',
     icon: ImageIcon,
     label: 'Image Converter',
     description: 'Convert between PNG, JPEG, WebP, GIF, BMP, TIFF, ICO. Batch processing with resize options.',
-    tags: ['Images', 'Batch', 'Resize'],
   },
+  {
+    id: 'image-clipper',
+    icon: Scissors,
+    label: 'Image Clipper',
+    description: 'Automatically trim transparent edges from PNG images. Perfect for icons, logos, and illustrations.',
+  },
+  {
+    id: 'circle-cropper',
+    icon: CircleDashed,
+    label: 'Circle Cropper',
+    description: 'Crop any image into a perfect circle. Drag & resize the circle overlay, then export as transparent PNG.',
+  },
+  
+  // Colors Category
   {
     id: 'pixel-picker',
     icon: Pipette,
     label: 'Pixel Picker',
     description: 'Pick colors from any image or directly from your screen. Get HEX, RGB, HSL, and OKLCH values.',
-    tags: ['Color', 'Design', 'Screen'],
+  },
+  {
+    id: 'color-converter',
+    icon: Palette,
+    label: 'Color Converter',
+    description: 'Convert between HEX, RGB, HSL, LAB, LCH, OKLAB, and OKLCH color formats. Real-time conversion.',
+  },
+  {
+    id: 'contrast-checker',
+    icon: Contrast,
+    label: 'Contrast Checker',
+    description: 'Check WCAG 2.1 color contrast compliance. Automatically fix colors to meet AA or AAA standards.',
+  },
+  {
+    id: 'gradient-generator',
+    icon: Blend,
+    label: 'Gradient Generator',
+    description: 'Create beautiful CSS gradients with multiple color stops. Export as CSS code or copy to clipboard.',
+  },
+  {
+    id: 'palette-extractor',
+    icon: ImageIcon,
+    label: 'Palette Extractor',
+    description: 'Extract color palettes from any image. Get dominant colors and generate harmonious schemes.',
+  },
+  {
+    id: 'palette-generator',
+    icon: Shuffle,
+    label: 'Palette Generator',
+    description: 'Generate random or custom color palettes. Explore color harmony rules like complementary, analogous, and triadic.',
   },
 ]
 
@@ -61,7 +94,7 @@ export default function Home({ onSelectTool }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
         {tools.map(({ id, icon: Icon, label, description, tags }) => (
           <button
             key={id}
@@ -73,13 +106,6 @@ export default function Home({ onSelectTool }) {
             </div>
             <h2 className="text-base font-semibold mb-1.5 text-textHeader">{label}</h2>
             <p className="text-[13px] text-text mb-3.5 leading-relaxed">{description}</p>
-            <div className="flex gap-1.5 flex-wrap">
-              {tags.map(tag => (
-                <span key={tag} className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-backgroundColor border border-borderColor text-text">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </button>
         ))}
       </div>
