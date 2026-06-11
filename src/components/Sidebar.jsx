@@ -1,9 +1,18 @@
 import { useState } from 'react'
-import { Layers, Eraser, ImageIcon, ChevronLeft, Menu, X } from 'lucide-react'
+import { 
+  Layers, 
+  Eraser, 
+  ImageIcon, 
+  Pipette, 
+  ChevronLeft, 
+  Menu, 
+  X 
+} from 'lucide-react'
 
 const tools = [
   { id: 'bg-remover', label: 'Background Remover', icon: Eraser },
   { id: 'image-converter', label: 'Image Converter', icon: ImageIcon },
+  { id: 'pixel-picker', label: 'Pixel Picker', icon: Pipette },
 ]
 
 export default function Sidebar({ activeTool, onSelectTool }) {
@@ -17,7 +26,7 @@ export default function Sidebar({ activeTool, onSelectTool }) {
 
   return (
     <>
-      {/* ── Mobile navbar ───────────────────────────────────────────── */}
+      {/* Mobile navbar */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-backgroundCard border-b border-borderColor">
         <div className="flex items-center justify-between px-4 h-14">
           <button
@@ -61,7 +70,7 @@ export default function Sidebar({ activeTool, onSelectTool }) {
         )}
       </div>
 
-      {/* ── Desktop sidebar ─────────────────────────────────────────── */}
+      {/* Desktop sidebar */}
       <aside
         className={`hidden md:flex flex-col shrink-0 bg-backgroundCard border-r border-borderColor h-screen sticky top-0 overflow-hidden transition-all duration-200 ${collapsed ? 'w-16' : 'w-[225px]'}`}
       >

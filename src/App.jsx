@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import Sidebar from './components/Sidebar'
+import Home from './pages/Home'
 import BackgroundRemover from './pages/BackgroundRemover'
 import ImageConverter from './pages/ImageConverter'
+import PixelPicker from './pages/PixelPicker'
 import './index.css'
 
 function App() {
-  const [activeTool, setActiveTool] = useState('bg-remover'); // default active tool
+  const [activeTool, setActiveTool] = useState(null)
 
   const renderPage = () => {
     switch (activeTool) {
       case 'bg-remover': return <BackgroundRemover />
       case 'image-converter': return <ImageConverter />
-      default: return <BackgroundRemover onSelectTool={setActiveTool} />
+      case 'pixel-picker': return <PixelPicker />
+      default: return <Home onSelectTool={setActiveTool} />
     }
   }
 
