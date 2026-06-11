@@ -9,7 +9,8 @@ import {
   ImageIcon, 
   Pipette,
   Scissors,
-  CircleDashed 
+  CircleDashed,
+  House,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -94,7 +95,10 @@ export default function Sidebar({ activeTool, onSelectTool }) {
         </div>
 
         {mobileOpen && (
-          <div className="flex flex-col px-3 pb-3">
+          <div className="flex flex-col px-3 pb-3 max-h-[70vh] overflow-y-auto scrollbar-hide">
+            {/* Home — no category label */}
+            <NavItem id={null} label="Home" icon={House} />
+
             {categories.map(({ label, tools }) => (
               <div key={label}>
                 <p className="text-[10px] font-semibold tracking-[0.08em] text-text uppercase px-2 pt-3 pb-1 m-0">
@@ -137,13 +141,17 @@ export default function Sidebar({ activeTool, onSelectTool }) {
           {!collapsed && (
             <div className="flex flex-col items-start leading-none">
               <span className="text-textHeader font-semibold text-[15px] whitespace-nowrap">DevToolkit</span>
-              {/* <span className="text-[10px] text-text mt-0.5">v{VERSION}</span> */}
             </div>
           )}
         </button>
 
-        {/* Categorized nav */}
-        <nav className="flex-1 px-2 py-2 flex flex-col gap-0.5 overflow-y-auto">
+        {/* Nav */}
+        <nav className="flex-1 px-2 py-2 flex flex-col gap-0.5 overflow-y-auto scrollbar-hide">
+          {/* Home — no category label */}
+          <div className="mb-2">
+            <NavItem id={null} label="Home" icon={House} />
+          </div>
+
           {categories.map(({ label, tools }) => (
             <div key={label} className="mb-2">
               {!collapsed && (
