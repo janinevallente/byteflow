@@ -1,4 +1,10 @@
-import { Eraser, ImageIcon, Pipette } from 'lucide-react'
+import { 
+  Eraser,
+  Scissors,
+  CircleDashed, 
+  ImageIcon, 
+  Pipette 
+} from 'lucide-react'
 
 const tools = [
   {
@@ -7,6 +13,20 @@ const tools = [
     label: 'Background Remover',
     description: 'Remove backgrounds from images instantly using edge detection. Export as transparent PNG.',
     tags: ['Images', 'PNG', 'Free'],
+  },
+    {
+    id: 'image-clipper',
+    icon: Scissors,
+    label: 'Image Clipper',
+    description: 'Automatically trim transparent edges from PNG images. Perfect for icons, logos, and illustrations.',
+    tags: ['Images', 'PNG', 'Trim'],
+  },
+    {
+    id: 'circle-cropper',
+    icon: CircleDashed,
+    label: 'Circle Cropper',
+    description: 'Crop any image into a perfect circle. Drag & resize the circle overlay, then export as transparent PNG.',
+    tags: ['Images', 'Circle', 'Avatar'],
   },
   {
     id: 'image-converter',

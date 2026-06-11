@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Sidebar from './components/Sidebar'
 import Home from './pages/Home'
 import BackgroundRemover from './pages/BackgroundRemover'
+import ImageClipper from './pages/ImageClipper'
+import CircleCropper from './pages/CircleCropper'
 import ImageConverter from './pages/ImageConverter'
 import PixelPicker from './pages/PixelPicker'
 import './index.css'
@@ -12,6 +14,8 @@ function App() {
   const renderPage = () => {
     switch (activeTool) {
       case 'bg-remover': return <BackgroundRemover />
+      case 'image-clipper': return <ImageClipper />
+      case 'circle-cropper': return <CircleCropper />
       case 'image-converter': return <ImageConverter />
       case 'pixel-picker': return <PixelPicker />
       default: return <Home onSelectTool={setActiveTool} />

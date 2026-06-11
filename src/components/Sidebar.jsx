@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { 
-  Layers, 
-  Eraser, 
-  ImageIcon, 
-  Pipette, 
+  Layers,  
   ChevronLeft, 
   Menu, 
-  X 
+  X,
+  Eraser, 
+  ImageIcon, 
+  Pipette,
+  Scissors,
+  CircleDashed 
 } from 'lucide-react'
 
 const tools = [
   { id: 'bg-remover', label: 'Background Remover', icon: Eraser },
+  { id: 'image-clipper', label: 'Image Clipper', icon: Scissors },
+  { id: 'circle-cropper', label: 'Circle Cropper', icon: CircleDashed },
   { id: 'image-converter', label: 'Image Converter', icon: ImageIcon },
   { id: 'pixel-picker', label: 'Pixel Picker', icon: Pipette },
 ]
