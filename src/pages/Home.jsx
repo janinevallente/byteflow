@@ -9,6 +9,7 @@ import {
   Blend,
   Sparkles,
   Shuffle,
+  Disc3,
 } from 'lucide-react'
 
 const tools = [
@@ -50,6 +51,12 @@ const tools = [
     icon: Palette,
     label: 'Color Converter',
     description: 'Convert between HEX, RGB, HSL, LAB, LCH, OKLAB, and OKLCH color formats. Real-time conversion.',
+  },
+  {
+    id: 'color-wheel',
+    icon: Disc3,
+    label: 'Color Wheel',
+    description: 'Pick a base color from an interactive color wheel and explore analogous, complementary, triadic, and other harmonies.',
   },
   {
     id: 'contrast-checker',

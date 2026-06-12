@@ -11,6 +11,7 @@ import ContrastChecker from './pages/ContrastChecker'
 import GradientGenerator from './pages/GradientGenerator'
 import PaletteExtractor from './pages/PaletteExtractor'
 import PaletteGenerator from './pages/PaletteGenerator'
+import ColorWheel from './pages/ColorWheel'
 import './index.css'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       case 'gradient-generator': return <GradientGenerator />
       case 'palette-extractor': return <PaletteExtractor />
       case 'palette-generator': return <PaletteGenerator />
+      case 'color-wheel': return <ColorWheel />
       default: return <Home onSelectTool={setActiveTool} />
     }
   }
