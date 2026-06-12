@@ -1,7 +1,14 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Contrast, Check, X, RefreshCw, Target, Loader2, Info, Shuffle } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
-import { getLuminance, contrastRatio, wcagLevels, randomRgb } from '../lib/colorUtils'
+import { 
+  RawHexToRgb,
+  RawRgbToHex,
+  getLuminance,
+  contrastRatio,
+  wcagLevels,
+  randomRgb
+} from '../lib/colorUtils'
 
 
 function ResultBadge({ pass, label }) {
@@ -14,21 +21,7 @@ function ResultBadge({ pass, label }) {
   )
 }
 
-const hexToRgb = (hex) => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null
-}
 
-const rgbToHex = (r, g, b) => {
-  return '#' + [r, g, b].map(x => {
-    const hex = Math.min(255, Math.max(0, Math.round(x))).toString(16)
-    return hex.length === 1 ? '0' + hex : hex
-  }).join('')
-}
 
 // GUARANTEED to find a color that meets contrast requirements
 // Uses binary search on brightness while preserving hue
@@ -125,8 +118,8 @@ const findColorWithContrast = (foregroundRgb, originalBackgroundRgb, targetRatio
 
 // Fix function to find a contrast color
 const fixContrastGuaranteed = (foregroundHex, backgroundHex, targetRatio, onProgress) => {
-  const fgRgb = hexToRgb(foregroundHex)
-  const bgRgb = hexToRgb(backgroundHex)
+  const fgRgb = RawHexToRgb(foregroundHex)
+  const bgRgb = RawHexToRgb(backgroundHex)
   
   if (!fgRgb || !bgRgb) return backgroundHex
   
@@ -139,10 +132,10 @@ const fixContrastGuaranteed = (foregroundHex, backgroundHex, targetRatio, onProg
   
   // Find a color that meets the requirement
   const fixedRgb = findColorWithContrast(fgRgb, bgRgb, targetRatio)
-  const fixedHex = rgbToHex(fixedRgb.r, fixedRgb.g, fixedRgb.b)
+  const fixedHex = RawRgbToHex(fixedRgb.r, fixedRgb.g, fixedRgb.b)
   
   // Verify the fix worked
-  const verifyRgb = hexToRgb(fixedHex)
+  const verifyRgb = RawHexToRgb(fixedHex)
   const finalRatio = contrastRatio(fgRgb, verifyRgb)
   
   // If somehow still not meeting target, try extreme colors
@@ -155,7 +148,7 @@ const fixContrastGuaranteed = (foregroundHex, backgroundHex, targetRatio, onProg
     for (const extreme of extremeColors) {
       const extremeRatio = contrastRatio(fgRgb, extreme)
       if (extremeRatio >= targetRatio) {
-        return rgbToHex(extreme.r, extreme.g, extreme.b)
+        return RawRgbToHex(extreme.r, extreme.g, extreme.b)
       }
     }
   }
@@ -170,8 +163,8 @@ export default function ContrastChecker() {
   const [bgInput, setBgInput] = useState('#16171d')
   const [isFixing, setIsFixing] = useState(false)
 
-  const fgRgb = useMemo(() => hexToRgb(fg), [fg])
-  const bgRgb = useMemo(() => hexToRgb(bg), [bg])
+  const fgRgb = useMemo(() => RawHexToRgb(fg), [fg])
+  const bgRgb = useMemo(() => RawHexToRgb(bg), [bg])
 
   const ratio = useMemo(() => {
     if (!fgRgb || !bgRgb) return 0
@@ -182,14 +175,14 @@ export default function ContrastChecker() {
 
   const handleFgInput = (val) => {
     setFgInput(val)
-    const rgb = hexToRgb(val)
-    if (rgb) setFg(rgbToHex(rgb.r, rgb.g, rgb.b))
+    const rgb = RawHexToRgb(val)
+    if (rgb) setFg(RawRgbToHex(rgb.r, rgb.g, rgb.b))
   }
 
   const handleBgInput = (val) => {
     setBgInput(val)
-    const rgb = hexToRgb(val)
-    if (rgb) setBg(rgbToHex(rgb.r, rgb.g, rgb.b))
+    const rgb = RawHexToRgb(val)
+    if (rgb) setBg(RawRgbToHex(rgb.r, rgb.g, rgb.b))
   }
 
   const handleFgPicker = (val) => {
@@ -210,7 +203,7 @@ export default function ContrastChecker() {
 
   const randomize = () => {
     const r1 = randomRgb(), r2 = randomRgb()
-    const h1 = rgbToHex(r1.r, r1.g, r1.b), h2 = rgbToHex(r2.r, r2.g, r2.b)
+    const h1 = RawRgbToHex(r1.r, r1.g, r1.b), h2 = RawRgbToHex(r2.r, r2.g, r2.b)
     setFg(h1); setFgInput(h1)
     setBg(h2); setBgInput(h2)
   }
