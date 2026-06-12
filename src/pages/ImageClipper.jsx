@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { Scissors, Upload, Download, X, Loader2, Image as ImageIcon } from 'lucide-react'
+import PageHeader from '../components/PageHeader'
 
 export default function ImageClipper() {
   const [image, setImage] = useState(null)
@@ -108,18 +109,11 @@ export default function ImageClipper() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="bg-accentBg border border-accentBorder rounded-xl p-2 text-accent">
-            <Scissors size={20} />
-          </span>
-          <h1 className="text-2xl font-semibold text-textHeader m-0">Image Clipper</h1>
-        </div>
-        <p className="text-text text-sm m-0">
-          Automatically trim transparent edges from PNG images down to the tightest bounding box.
-        </p>
-      </div>
+      <PageHeader
+        icon={Scissors}
+        title="Image Clipper"
+        description="Automatically trim transparent edges from PNG images down to the tightest bounding box."
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upload */}

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Blend, Copy, Check, Plus, X, Shuffle } from 'lucide-react'
+import PageHeader from '../components/PageHeader'
 import { randomRgb, rgbToHex } from '../lib/colorUtils'
 
 const TYPES = ['linear', 'radial', 'conic']
@@ -56,18 +57,11 @@ export default function GradientGenerator() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="bg-accentBg border border-accentBorder rounded-[10px] p-2 text-accent">
-            <Blend size={20} />
-          </span>
-          <h1 className="text-2xl font-semibold text-textHeader m-0">Gradient Generator</h1>
-        </div>
-        <p className="text-text text-sm m-0">
-          Create linear, radial, and conic gradients and copy the CSS.
-        </p>
-      </div>
+      <PageHeader
+        icon={Blend}
+        title="Gradient Generator"
+        description="Create linear, radial, and conic gradients and copy the CSS."
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Controls */}

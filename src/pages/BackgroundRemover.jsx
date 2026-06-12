@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { Eraser, Upload, Download, Image as ImageIcon, X } from 'lucide-react'
 import { removeBackground } from '@imgly/background-removal'
+import PageHeader from '../components/PageHeader'
 
 export default function BackgroundRemover() {
   const [image, setImage] = useState(null)
@@ -79,27 +80,20 @@ export default function BackgroundRemover() {
   const checkerboard = { background: 'repeating-conic-gradient(#3a3a3a 0% 25%, #2a2a2a 0% 50%) 0 0 / 16px 16px' }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="bg-accentBg border border-accentBorder rounded-[10px] p-2 text-accent">
-            <Eraser size={20} />
-          </span>
-          <h1 className="text-2xl font-semibold text-textHeader m-0">Background Remover</h1>
-        </div>
-        <p className="text-text text-sm m-0">
-          Remove backgrounds from any image using AI — runs entirely in your browser. Output is a transparent PNG.
-        </p>
-      </div>
+    <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8 font-poppins">
+      <PageHeader
+        icon={Eraser}
+        title="Background Remover"
+        description="Remove backgrounds from any image using AI — runs entirely in your browser. Output is a transparent PNG."
+      />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Upload Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-semibold text-textHeader m-0">Upload Image</h2>
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h2 className="text-xs sm:text-sm font-semibold text-textHeader m-0">Upload Image</h2>
             {image && (
-              <button onClick={reset} className="bg-transparent border-none cursor-pointer text-text text-xs flex items-center gap-1 hover:text-accent transition-colors">
+              <button onClick={reset} className="bg-transparent border-none cursor-pointer text-text text-[11px] sm:text-xs flex items-center gap-1 hover:text-accent transition-colors">
                 <X size={13} /> Clear
               </button>
             )}
@@ -109,27 +103,27 @@ export default function BackgroundRemover() {
             <div
               onClick={() => inputRef.current?.click()}
               onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all
+              className={`border-2 border-dashed rounded-xl px-4 sm:px-6 py-8 sm:py-12 text-center cursor-pointer transition-all
                 ${dragOver ? 'border-accent bg-accentBg' : 'border-borderColor bg-transparent hover:border-accent hover:bg-accentBg'}`}
             >
-              <Upload size={40} className="text-accent mx-auto mb-3" />
-              <p className="font-medium text-sm text-textHeader mb-1">Drop image here or click to upload</p>
-              <p className="text-text text-xs">PNG, JPG, WebP, GIF supported</p>
+              <Upload size={32} className="text-accent mx-auto mb-2.5 sm:mb-3 sm:size-10" />
+              <p className="font-medium text-xs sm:text-sm text-textHeader mb-1">Drop image here or click to upload</p>
+              <p className="text-text text-[11px] sm:text-xs">PNG, JPG, WebP, GIF supported</p>
               <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (
             <div>
-              <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-[200px] flex items-center justify-center" style={checkerboard}>
-                <img src={preview} alt="Preview" className="max-w-full max-h-80 object-contain block" />
+              <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-[160px] sm:min-h-[200px] flex items-center justify-center" style={checkerboard}>
+                <img src={preview} alt="Preview" className="max-w-full max-h-64 sm:max-h-80 object-contain block" />
               </div>
-              <p className="text-xs text-text mt-2 mb-0">
+              <p className="text-[11px] sm:text-xs text-text mt-2 mb-0">
                 {image?.name} · {(image?.size / 1024).toFixed(1)} KB
               </p>
             </div>
           )}
 
           {error && (
-            <div className="bg-red-500/10 border border-red-400/30 rounded-lg px-3.5 py-2.5 mt-3 text-[13px] text-red-500">
+            <div className="bg-red-500/10 border border-red-400/30 rounded-lg px-3 sm:px-3.5 py-2 sm:py-2.5 mt-3 text-xs sm:text-[13px] text-red-500">
               {error}
             </div>
           )}
@@ -137,7 +131,7 @@ export default function BackgroundRemover() {
           {/* Progress bar */}
           {loading && (
             <div className="mt-4">
-              <div className="flex justify-between text-xs text-text mb-1.5">
+              <div className="flex justify-between text-[11px] sm:text-xs text-text mb-1.5">
                 <span>{progressText}</span>
                 <span>{progress}%</span>
               </div>
@@ -153,7 +147,7 @@ export default function BackgroundRemover() {
           <button
             onClick={handleRemoveBackground}
             disabled={!image || loading}
-            className={`w-full mt-4 py-2.5 rounded-xl text-sm font-semibold transition-all border-none
+            className={`w-full mt-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border-none
               ${image && !loading
                 ? 'bg-accent text-white cursor-pointer hover:opacity-90'
                 : 'bg-borderColor text-text cursor-not-allowed'
@@ -164,31 +158,31 @@ export default function BackgroundRemover() {
         </div>
 
         {/* Result Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-semibold text-textHeader m-0">Result</h2>
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+            <h2 className="text-xs sm:text-sm font-semibold text-textHeader m-0">Result</h2>
             {result && (
               <button
                 onClick={download}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity shrink-0"
               >
                 <Download size={13} /> Download PNG
               </button>
             )}
           </div>
 
-          <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-80 flex items-center justify-center" style={checkerboard}>
+          <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-60 sm:min-h-80 flex items-center justify-center" style={checkerboard}>
             {result ? (
-              <img src={result} alt="Result" className="max-w-full max-h-80 object-contain block" />
+              <img src={result} alt="Result" className="max-w-full max-h-64 sm:max-h-80 object-contain block" />
             ) : (
-              <div className="text-center text-text text-[13px] p-8">
-                <ImageIcon size={36} className="mx-auto mb-2.5 opacity-40" />
+              <div className="text-center text-text text-xs sm:text-[13px] p-6 sm:p-8">
+                <ImageIcon size={30} className="mx-auto mb-2.5 opacity-40 sm:size-9" />
                 Processed image will appear here
               </div>
             )}
           </div>
 
-          <div className="mt-4 p-3 bg-accentBg border border-accentBorder rounded-xl text-xs text-text">
+          <div className="mt-4 p-2.5 sm:p-3 bg-accentBg border border-accentBorder rounded-xl text-[11px] sm:text-xs text-text">
             <span className="text-accent font-semibold">Note:</span> The first run downloads the AI model (~20MB). Subsequent runs are instant — the model is cached in your browser.
           </div>
         </div>

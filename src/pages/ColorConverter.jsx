@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Palette, Copy, Check, ChevronDown } from 'lucide-react'
+import PageHeader from '../components/PageHeader'
 import {
   hexToRgb,
   rgbToHex,
@@ -147,18 +148,11 @@ export default function ColorConverter() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="bg-accentBg border border-accentBorder rounded-[10px] p-2 text-accent">
-            <Palette size={20} />
-          </span>
-          <h1 className="text-2xl font-semibold text-textHeader m-0">Color Converter</h1>
-        </div>
-        <p className="text-text text-sm m-0">
-          Convert between color formats — HEX, RGB, decimal RGB, HSL, LAB, LCH, OKLAB, and OKLCH.
-        </p>
-      </div>
+      <PageHeader
+        icon={Palette}
+        title="Color Converter"
+        description="Convert between color formats — HEX, RGB, decimal RGB, HSL, LAB, LCH, OKLAB, and OKLCH."
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: preview + input - COMPACT VERSION */}
