@@ -1,18 +1,28 @@
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
+import { SyncLoader } from 'react-spinners'
 import Sidebar from './components/Sidebar'
 import Home from './pages/Home'
-import BackgroundRemover from './pages/BackgroundRemover'
-import ImageClipper from './pages/ImageClipper'
-import CircleCropper from './pages/CircleCropper'
-import ImageConverter from './pages/ImageConverter'
-import PixelPicker from './pages/PixelPicker'
-import ColorWheel from './pages/ColorWheel'
-import ColorConverter from './pages/ColorConverter'
-import ContrastChecker from './pages/ContrastChecker'
-import GradientGenerator from './pages/GradientGenerator'
-import PaletteExtractor from './pages/PaletteExtractor'
-import TailwindCheatSheet from './pages/TailwindCheatSheet'
 import './index.css'
+
+const BackgroundRemover = lazy(() => import('./pages/BackgroundRemover'))
+const ImageClipper = lazy(() => import('./pages/ImageClipper'))
+const CircleCropper = lazy(() => import('./pages/CircleCropper'))
+const ImageConverter = lazy(() => import('./pages/ImageConverter'))
+const PixelPicker = lazy(() => import('./pages/PixelPicker'))
+const ColorWheel = lazy(() => import('./pages/ColorWheel'))
+const ColorConverter = lazy(() => import('./pages/ColorConverter'))
+const ContrastChecker = lazy(() => import('./pages/ContrastChecker'))
+const GradientGenerator = lazy(() => import('./pages/GradientGenerator'))
+const PaletteExtractor = lazy(() => import('./pages/PaletteExtractor'))
+const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <SyncLoader color="#9459d0" size={13} />
+    </div>
+  )
+}
 
 function App() {
   const [activeTool, setActiveTool] = useState(null)
@@ -39,7 +49,9 @@ function App() {
       <Sidebar activeTool={activeTool} onSelectTool={setActiveTool} />
       <div className="flex flex-col flex-1 min-w-0 pt-14 md:pt-0">
         <main className="flex-1">
-          {renderPage()}
+          <Suspense fallback={<PageLoader />}>
+            {renderPage()}
+          </Suspense>
         </main>
       </div>
     </div>
