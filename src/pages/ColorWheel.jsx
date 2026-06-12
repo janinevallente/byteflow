@@ -309,13 +309,14 @@ export default function ColorWheel() {
       />
 
       {/* Top bar: current color summary */}
-      <div className="bg-backgroundCard border border-borderColor rounded-2xl p-4 mb-6">
-        <div className="flex flex-wrap items-center gap-4 lg:gap-6">
+      <div className="bg-backgroundCard border border-borderColor rounded-2xl p-3 sm:p-4 mb-4 sm:mb-6">
+        {/* lg+: everything in one row */}
+        <div className="hidden lg:flex items-center gap-6">
           <div
             className="w-10 h-10 rounded-xl border border-borderColor shrink-0"
             style={{ background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
           />
-
+ 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 flex-1 min-w-0">
             {VALUE_FORMATS.map(({ id }) => {
               const val = formatValue(rgb, id)
@@ -323,21 +324,21 @@ export default function ColorWheel() {
                 <button
                   key={id}
                   onClick={() => copyToClipboard(val)}
-                  className="flex flex-col items-start gap-0.5 bg-transparent border-none cursor-pointer text-left p-0 group"
+                  className="flex flex-col items-start gap-0.5 bg-transparent border-none cursor-pointer text-left p-0 group min-w-0"
                   title="Copy"
                 >
                   <span className="text-[10px] font-semibold text-accent uppercase">{id}</span>
-                  <span className="text-xs text-textHeader font-mono flex items-center gap-1.5 group-hover:text-accent transition-colors">
+                  <span className="text-xs text-textHeader font-mono flex items-center gap-1.5 group-hover:text-accent transition-colors truncate">
                     {val}
-                    {copied === val ? <Check size={11} className="text-green-400" /> : <Copy size={11} className="opacity-60" />}
+                    {copied === val ? <Check size={11} className="text-green-400 shrink-0" /> : <Copy size={11} className="opacity-60 shrink-0" />}
                   </span>
                 </button>
               )
             })}
           </div>
-
+ 
           {/* Shade strip */}
-          <div className="flex-1 min-w-[160px] max-w-[260px]">
+          <div className="flex-1 max-w-[260px]">
             <div
               onClick={handleShadeClick}
               className="relative h-9 rounded-lg border border-borderColor cursor-pointer overflow-hidden"
@@ -353,10 +354,44 @@ export default function ColorWheel() {
               />
             </div>
           </div>
-
+ 
           <button
             onClick={() => openExport(harmonyColors)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-90 transition-all shrink-0"
+            className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-90 transition-all shrink-0"
+          >
+            <Share2 size={14} /> Export Colors
+          </button>
+        </div>
+ 
+        {/* below lg: preview + shade strip in a row, export button below */}
+        <div className="flex lg:hidden flex-col gap-3 sm:gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl border border-borderColor shrink-0"
+              style={{ background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
+            />
+ 
+            <div className="flex-1 min-w-0">
+              <div
+                onClick={handleShadeClick}
+                className="relative h-8 sm:h-9 rounded-lg border border-borderColor cursor-pointer overflow-hidden"
+                style={{ background: `linear-gradient(to right, ${shadeStops})` }}
+                title="Click to pick a shade"
+              >
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-white shadow"
+                  style={{
+                    left: `${((95 - baseLight) / 90) * 100}%`,
+                    background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+ 
+          <button
+            onClick={() => openExport(harmonyColors)}
+            className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-90 transition-all w-full sm:w-auto sm:self-center"
           >
             <Share2 size={14} /> Export Colors
           </button>
@@ -631,7 +666,7 @@ export default function ColorWheel() {
                   {/* Code */}
                   <div className="rounded-xl bg-backgroundColor border border-borderColor p-3 flex flex-col">
                     <pre className="m-0 mb-3 flex-1 text-[12px] text-textHeader font-mono whitespace-pre-wrap break-all">
-{exportCode}
+                      {exportCode}
                     </pre>
                     <button
                       onClick={copyExportCode}

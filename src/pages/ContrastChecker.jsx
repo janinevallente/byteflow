@@ -250,20 +250,20 @@ export default function ContrastChecker() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Inputs */}
         <div className="bg-backgroundCard border border-borderColor rounded-2xl p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-semibold text-textHeader m-0">Colors</h2>
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-2 mb-4">
+            <h2 className="text-sm font-semibold text-textHeader m-0 shrink-0">Colors</h2>
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 onClick={swap}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
               >
-                <RefreshCw size={13} /> Swap
+                <RefreshCw size={13} className="shrink-0" /> Swap
               </button>
               <button
                 onClick={randomize}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
               >
-                <Shuffle size={13} /> Randomize
+                <Shuffle size={13} className="shrink-0" /> Randomize
               </button>
             </div>
           </div>
@@ -309,30 +309,30 @@ export default function ContrastChecker() {
           </div>
 
           {/* Fix Contrast Buttons */}
-          <div className="mt-5 flex gap-2">
+          <div className="mt-5 flex flex-col sm:flex-row gap-2">
             <button
               onClick={fixToAA}
               disabled={ratio >= 4.5 || isFixing}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all
+              className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-center
                 ${ratio >= 4.5 
                   ? 'bg-green-500/20 text-green-400 border border-green-400/30 cursor-default' 
                   : 'bg-accent text-white cursor-pointer hover:opacity-90'
                 } ${isFixing ? 'opacity-50 cursor-wait' : ''}`}
             >
-              {isFixing ? <Loader2 size={14} className="animate-spin" /> : <Target size={14} />}
+              {isFixing ? <Loader2 size={14} className="animate-spin shrink-0" /> : <Target size={14} className="shrink-0" />}
               Fix to AA (4.5:1)
               {ratio >= 4.5 && ' ✓'}
             </button>
             <button
               onClick={fixToAAA}
               disabled={ratio >= 7.0 || isFixing}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all
+              className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-center
                 ${ratio >= 7.0 
                   ? 'bg-green-500/20 text-green-400 border border-green-400/30 cursor-default' 
                   : 'bg-accent text-white cursor-pointer hover:opacity-90'
                 } ${isFixing ? 'opacity-50 cursor-wait' : ''}`}
             >
-              {isFixing ? <Loader2 size={14} className="animate-spin" /> : <Target size={14} />}
+              {isFixing ? <Loader2 size={14} className="animate-spin shrink-0" /> : <Target size={14} className="shrink-0" />}
               Fix to AAA (7:1)
               {ratio >= 7.0 && ' ✓'}
             </button>
