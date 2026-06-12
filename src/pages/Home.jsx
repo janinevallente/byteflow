@@ -20,10 +20,12 @@ export default function Home({ onSelectTool }) {
             onClick={() => onSelectTool(id)}
             className="bg-backgroundCard border border-borderColor rounded-2xl p-4 text-left cursor-pointer transition-all duration-150 hover:border-accentBorder hover:-translate-y-0.5"
           >
-            <div className="text-accent bg-accentBg border border-accentBorder rounded-xl inline-flex p-2 mb-3">
-              <Icon size={18} />
+            <div className="flex flex-row items-center gap-3 mb-2 w-full">
+              <div className="text-accent bg-accentBg border border-accentBorder rounded-xl flex items-center justify-center p-2 shrink-0">
+                <Icon size={18} />
+              </div>
+              <h2 className="text-sm font-semibold text-textHeader m-0 flex-1 min-w-0">{label}</h2>
             </div>
-            <h2 className="text-sm font-semibold mb-1 text-textHeader">{label}</h2>
             <p className="text-[12px] text-text mb-1 leading-relaxed">{description}</p>
           </button>
         ))}
