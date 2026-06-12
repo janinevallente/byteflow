@@ -6,12 +6,11 @@ import ImageClipper from './pages/ImageClipper'
 import CircleCropper from './pages/CircleCropper'
 import ImageConverter from './pages/ImageConverter'
 import PixelPicker from './pages/PixelPicker'
+import ColorWheel from './pages/ColorWheel'
 import ColorConverter from './pages/ColorConverter'
 import ContrastChecker from './pages/ContrastChecker'
 import GradientGenerator from './pages/GradientGenerator'
 import PaletteExtractor from './pages/PaletteExtractor'
-import PaletteGenerator from './pages/PaletteGenerator'
-import ColorWheel from './pages/ColorWheel'
 import './index.css'
 
 function App() {
@@ -24,12 +23,11 @@ function App() {
       case 'circle-cropper': return <CircleCropper />
       case 'image-converter': return <ImageConverter />
       case 'pixel-picker': return <PixelPicker />
+      case 'color-wheel': return <ColorWheel />
       case 'color-converter': return <ColorConverter />
       case 'contrast-checker': return <ContrastChecker />
       case 'gradient-generator': return <GradientGenerator />
       case 'palette-extractor': return <PaletteExtractor />
-      case 'palette-generator': return <PaletteGenerator />
-      case 'color-wheel': return <ColorWheel />
       default: return <Home onSelectTool={setActiveTool} />
     }
   }

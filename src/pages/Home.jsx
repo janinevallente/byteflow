@@ -8,7 +8,6 @@ import {
   Contrast,
   Blend,
   Sparkles,
-  Shuffle,
   Disc3,
 } from 'lucide-react'
 
@@ -75,12 +74,6 @@ const tools = [
     icon: ImageIcon,
     label: 'Palette Extractor',
     description: 'Extract color palettes from any image. Get dominant colors and generate harmonious schemes.',
-  },
-  {
-    id: 'palette-generator',
-    icon: Shuffle,
-    label: 'Palette Generator',
-    description: 'Generate random or custom color palettes. Explore color harmony rules like complementary, analogous, and triadic.',
   },
 ]
 

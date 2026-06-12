@@ -15,7 +15,6 @@ import {
   Palette,
   Contrast,
   Blend,
-  Shuffle,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -39,7 +38,6 @@ const categories = [
       { id: 'contrast-checker', label: 'Contrast Checker', icon: Contrast },
       { id: 'gradient-generator', label: 'Gradient Generator', icon: Blend },
       { id: 'palette-extractor', label: 'Palette Extractor', icon: ImageIcon },
-      { id: 'palette-generator', label: 'Palette Generator', icon: Shuffle },
     ],
   },
 ]
