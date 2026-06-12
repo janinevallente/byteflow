@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { Disc3, Copy, Check, ChevronDown, Shuffle, Share2, X } from 'lucide-react'
+import { LifeBuoy, Copy, Check, ChevronDown, Shuffle, Share2, X } from 'lucide-react'
 import {
   hexToRgb,
   rgbToHex,
@@ -305,7 +305,7 @@ export default function ColorWheel() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <span className="bg-accentBg border border-accentBorder rounded-[10px] p-2 text-accent">
-            <Disc3 size={20} />
+            <LifeBuoy size={20} />
           </span>
           <h1 className="text-2xl font-semibold text-textHeader m-0">Color Wheel</h1>
         </div>

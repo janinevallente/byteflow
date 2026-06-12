@@ -11,7 +11,7 @@ import {
   Scissors,
   CircleDashed,
   Pipette,
-  Disc3,
+  LifeBuoy,
   Palette,
   Contrast,
   Blend,
@@ -33,7 +33,7 @@ const categories = [
     label: 'Colors',
     tools: [
       { id: 'pixel-picker', label: 'Pixel Picker', icon: Pipette },
-      { id: 'color-wheel', label: 'Color Wheel', icon: Disc3 },
+      { id: 'color-wheel', label: 'Color Wheel', icon: LifeBuoy },
       { id: 'color-converter', label: 'Color Converter', icon: Palette },
       { id: 'contrast-checker', label: 'Contrast Checker', icon: Contrast },
       { id: 'gradient-generator', label: 'Gradient Generator', icon: Blend },

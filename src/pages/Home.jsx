@@ -8,7 +8,7 @@ import {
   Contrast,
   Blend,
   Sparkles,
-  Disc3,
+  LifeBuoy,
 } from 'lucide-react'
 
 const tools = [
@@ -53,7 +53,7 @@ const tools = [
   },
   {
     id: 'color-wheel',
-    icon: Disc3,
+    icon: LifeBuoy,
     label: 'Color Wheel',
     description: 'Pick a base color from an interactive color wheel and explore analogous, complementary, triadic, and other harmonies.',
   },
