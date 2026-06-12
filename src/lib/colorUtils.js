@@ -279,7 +279,7 @@ export function getAllFormats(r, g, b) {
   return {
     HEX: rgbToHex(r, g, b).toUpperCase(),
     RGB: rgbToCss(r, g, b),
-    'Decimal RGB': String(rgbToDecimal(r, g, b)),
+    'Decimal RGB': `rgb(${(r / 255).toFixed(4)}, ${(g / 255).toFixed(4)}, ${(b / 255).toFixed(4)})`,
     HSL: `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`,
     LAB: `lab(${lab.l.toFixed(2)} ${lab.a.toFixed(2)} ${lab.b.toFixed(2)})`,
     LCH: `lch(${lch.l.toFixed(2)} ${lch.c.toFixed(2)} ${lch.h.toFixed(1)})`,
@@ -289,31 +289,6 @@ export function getAllFormats(r, g, b) {
 }
 
 // ---------- WCAG Contrast ----------
-
-// export function relativeLuminance(r, g, b) {
-//   const lin = (c) => {
-//     c /= 255
-//     return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
-//   }
-//   return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
-// }
-
-// export function contrastRatio(rgb1, rgb2) {
-//   const l1 = relativeLuminance(rgb1.r, rgb1.g, rgb1.b)
-//   const l2 = relativeLuminance(rgb2.r, rgb2.g, rgb2.b)
-//   const lighter = Math.max(l1, l2)
-//   const darker = Math.min(l1, l2)
-//   return (lighter + 0.05) / (darker + 0.05)
-// }
-
-// export function wcagLevels(ratio) {
-//   return {
-//     aaNormal: ratio >= 4.5,
-//     aaLarge: ratio >= 3,
-//     aaaNormal: ratio >= 7,
-//     aaaLarge: ratio >= 4.5,
-//   }
-// }
 export function getLuminance(rgb) {
   const rsrgb = rgb.r / 255
   const gsrgb = rgb.g / 255
