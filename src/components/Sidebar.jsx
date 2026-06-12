@@ -15,6 +15,7 @@ import {
   Palette,
   Contrast,
   Blend,
+  BookOpen,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -38,6 +39,12 @@ const categories = [
       { id: 'contrast-checker', label: 'Contrast Checker', icon: Contrast },
       { id: 'gradient-generator', label: 'Gradient Generator', icon: Blend },
       { id: 'palette-extractor', label: 'Palette Extractor', icon: ImageIcon },
+    ],
+  },
+  {
+    label: 'Reference',
+    tools: [
+      { id: 'tailwind-cheat-sheet', label: 'Tailwind CSS Cheat Sheet', icon: BookOpen },
     ],
   },
 ]

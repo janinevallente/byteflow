@@ -11,6 +11,7 @@ import ColorConverter from './pages/ColorConverter'
 import ContrastChecker from './pages/ContrastChecker'
 import GradientGenerator from './pages/GradientGenerator'
 import PaletteExtractor from './pages/PaletteExtractor'
+import TailwindCheatSheet from './pages/TailwindCheatSheet'
 import './index.css'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       case 'contrast-checker': return <ContrastChecker />
       case 'gradient-generator': return <GradientGenerator />
       case 'palette-extractor': return <PaletteExtractor />
+      case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
       default: return <Home onSelectTool={setActiveTool} />
     }
   }

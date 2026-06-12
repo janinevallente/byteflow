@@ -9,6 +9,7 @@ import {
   Blend,
   Sparkles,
   LifeBuoy,
+  BookOpen,
 } from 'lucide-react'
 
 const tools = [
@@ -74,6 +75,14 @@ const tools = [
     icon: ImageIcon,
     label: 'Palette Extractor',
     description: 'Extract color palettes from any image. Get dominant colors and generate harmonious schemes.',
+  },
+
+  // Reference Category
+  {
+    id: 'tailwind-cheat-sheet',
+    icon: BookOpen,
+    label: 'Tailwind CSS Cheat Sheet',
+    description: 'A quick reference for Tailwind CSS utility classes, their CSS equivalents, and sample usage.',
   },
 ]
 
