@@ -92,7 +92,7 @@ export default function Sidebar({ activeTool, onSelectTool }) {
             <span className="bg-accent rounded-lg w-7 h-7 flex items-center justify-center shrink-0">
               <Layers size={15} color="white" />
             </span>
-            DevToolkit
+            Byteflow
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -149,7 +149,7 @@ export default function Sidebar({ activeTool, onSelectTool }) {
           </span>
           {!collapsed && (
             <div className="flex flex-col items-start leading-none">
-              <span className="text-textHeader font-semibold text-[15px] whitespace-nowrap">DevToolkit</span>
+              <span className="text-textHeader font-semibold text-[15px] whitespace-nowrap">Byteflow</span>
             </div>
           )}
         </button>

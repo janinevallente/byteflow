@@ -81,16 +81,13 @@ export default function Home({ onSelectTool }) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
       <div className="text-center mb-14">
-        <div className="inline-flex items-center gap-2 bg-accentBg border border-accentBorder rounded-full px-4 py-1.5 text-xs text-accent font-medium mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
-          Free · No sign-up · Works offline
-        </div>
         <h1 className="text-4xl font-bold mb-4 text-textHeader tracking-tight leading-tight">
-          Developer Tools,<br />
+          Byteflow,<br />
           <span className="text-accent">Right in Your Browser</span>
         </h1>
-        <p className="text-text max-w-[440px] mx-auto text-[15px] leading-relaxed">
-          A growing collection of dev utilities. No installs, no uploads to servers — everything runs locally.
+        <p className="text-text max-w-[650px] mx-auto text-[15px] leading-relaxed">
+            A growing collection of fast, privacy-first tech utilities that run entirely in your browser.
+            No installs. No server uploads. Just tools that work instantly.
         </p>
       </div>
 
