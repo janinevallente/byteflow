@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { LifeBuoy, Copy, Check, ChevronDown, Shuffle, Share2, X } from 'lucide-react'
+import { LifeBuoy, Copy, Check, Shuffle, Share2, X } from 'lucide-react'
+import { Select } from 'antd'
 import {
   hexToRgb,
   rgbToHex,
@@ -104,10 +105,8 @@ function toHexLabel(rgb) {
 export default function ColorWheel() {
   const [rgb, setRgb] = useState({ r: 234, g: 88, b: 63 }) // #EA583F
   const [harmonyType, setHarmonyType] = useState('analogous')
-  const [harmonyDropdownOpen, setHarmonyDropdownOpen] = useState(false)
   const [inputFormat, setInputFormat] = useState('Hex')
   const [colorInput, setColorInput] = useState(formatValue({ r: 234, g: 88, b: 63 }, 'Hex'))
-  const [formatDropdownOpen, setFormatDropdownOpen] = useState(false)
   const [copied, setCopied] = useState(null)
   const [exportColors, setExportColors] = useState(null) // null = closed, else array of {r,g,b}
   const [exportValueType, setExportValueType] = useState('Hex')
@@ -269,7 +268,6 @@ export default function ColorWheel() {
   const handleFormatChange = (fmt) => {
     setInputFormat(fmt)
     setColorInput(formatValue(rgb, fmt))
-    setFormatDropdownOpen(false)
   }
 
   const handleRandom = () => {
@@ -298,7 +296,6 @@ export default function ColorWheel() {
   }
 
   const currentFormatMeta = VALUE_FORMATS.find(f => f.id === inputFormat)
-  const currentHarmonyMeta = HARMONIES.find(h => h.id === harmonyType)
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
@@ -461,32 +458,13 @@ export default function ColorWheel() {
             >
               {copied === colorInput ? <Check size={15} className="text-green-400" /> : <Copy size={15} />}
             </button>
-            <div className="relative shrink-0">
-              <button
-                onClick={() => setFormatDropdownOpen(prev => !prev)}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-lg bg-backgroundColor border border-borderColor text-xs font-medium text-textHeader cursor-pointer hover:border-accent transition-colors"
-              >
-                {inputFormat}
-                <ChevronDown size={13} className={`text-text transition-transform ${formatDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {formatDropdownOpen && (
-                <div className="absolute z-10 top-full right-0 mt-1 rounded-lg bg-backgroundCard border border-borderColor overflow-hidden shadow-lg min-w-[80px]">
-                  {VALUE_FORMATS.map(f => (
-                    <button
-                      key={f.id}
-                      onClick={() => handleFormatChange(f.id)}
-                      className={`w-full text-left px-3 py-1.5 text-xs cursor-pointer border-none transition-colors
-                        ${f.id === inputFormat
-                          ? 'bg-accentBg text-accent font-medium'
-                          : 'bg-transparent text-textHeader hover:bg-accentBg hover:text-accent'
-                        }`}
-                    >
-                      {f.id}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Select
+              value={inputFormat}
+              onChange={handleFormatChange}
+              popupMatchSelectWidth={false}
+              className="shrink-0 w-[88px]"
+              options={VALUE_FORMATS.map(f => ({ value: f.id, label: f.id }))}
+            />
           </div>
 
           <button
@@ -499,32 +477,14 @@ export default function ColorWheel() {
 
         {/* Right: harmony preview */}
         <div className="flex flex-col">
-          <div className="relative mb-3">
-            <button
-              onClick={() => setHarmonyDropdownOpen(prev => !prev)}
-              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-backgroundCard border border-borderColor text-sm text-textHeader cursor-pointer hover:border-accent transition-colors"
-            >
-              {currentHarmonyMeta?.label}
-              <ChevronDown size={15} className={`text-text transition-transform ${harmonyDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {harmonyDropdownOpen && (
-              <div className="absolute z-10 top-full left-0 right-0 mt-1 rounded-xl bg-backgroundCard border border-borderColor overflow-hidden shadow-lg">
-                {HARMONIES.map(h => (
-                  <button
-                    key={h.id}
-                    onClick={() => { setHarmonyType(h.id); setHarmonyDropdownOpen(false) }}
-                    className={`w-full text-left px-3.5 py-2 text-sm cursor-pointer border-none transition-colors
-                      ${h.id === harmonyType
-                        ? 'bg-accentBg text-accent font-medium'
-                        : 'bg-transparent text-textHeader hover:bg-accentBg hover:text-accent'
-                      }`}
-                  >
-                    {h.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <Select
+            value={harmonyType}
+            onChange={setHarmonyType}
+            className="w-full mb-3"
+            size="large"
+            options={HARMONIES.map(h => ({ value: h.id, label: h.label }))}
+            showSearch
+          />
 
           <div className="rounded-2xl border border-borderColor overflow-hidden flex-1 flex flex-col min-h-[260px]">
             {harmonyColors.map((c, i) => {

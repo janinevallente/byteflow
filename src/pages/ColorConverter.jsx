@@ -1,10 +1,10 @@
 import { useState, useCallback, useMemo } from 'react'
-import { Palette, Copy, Check, ChevronDown } from 'lucide-react'
+import { Palette, Copy, Check } from 'lucide-react'
+import { Select } from 'antd'
 import PageHeader from '../components/PageHeader'
 import {
   hexToRgb,
   rgbToHex,
-  rgbToDecimal,
   rgbToHsl,
   hslToRgb,
   rgbToLab,
@@ -114,7 +114,6 @@ export default function ColorConverter() {
   const [format, setFormat] = useState('HEX')
   const [value, setValue] = useState(rgbToHex(DEFAULT_RGB.r, DEFAULT_RGB.g, DEFAULT_RGB.b))
   const [copied, setCopied] = useState(null)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const rgb = useMemo(() => {
     const parsed = parseInput(format, value)
@@ -135,7 +134,6 @@ export default function ColorConverter() {
       setValue(formatForInput(newFormat, rgb))
     }
     setFormat(newFormat)
-    setDropdownOpen(false)
   }
 
   const copyToClipboard = useCallback((text) => {
@@ -184,35 +182,16 @@ export default function ColorConverter() {
                 )}
               </div>
 
-              {/* Input Format dropdown */}
               <div>
                 <label className="text-[10px] font-semibold text-accent block mb-0.5">Input Format</label>
-                <div className="relative">
-                  <button
-                    onClick={() => setDropdownOpen(prev => !prev)}
-                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg bg-backgroundColor border border-borderColor text-sm text-textHeader cursor-pointer hover:border-accent transition-colors"
-                  >
-                    {currentFormatMeta?.label}
-                    <ChevronDown size={14} className={`text-text transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {dropdownOpen && (
-                    <div className="absolute z-10 top-full left-0 right-0 mt-1 rounded-lg bg-backgroundCard border border-borderColor overflow-hidden shadow-lg max-h-60 overflow-y-auto">
-                      {INPUT_FORMATS.map(f => (
-                        <button
-                          key={f.id}
-                          onClick={() => handleFormatChange(f.id)}
-                          className={`w-full text-left px-3 py-1.5 text-xs cursor-pointer border-none transition-colors
-                            ${f.id === format
-                              ? 'bg-accentBg text-accent font-medium'
-                              : 'bg-transparent text-textHeader hover:bg-accentBg hover:text-accent'
-                            }`}
-                        >
-                          {f.label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Select
+                  value={format}
+                  onChange={handleFormatChange}
+                  className="w-full"
+                  popupMatchSelectWidth={false}
+                  options={INPUT_FORMATS.map(f => ({ value: f.id, label: f.label }))}
+                  showSearch
+                />
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react'
 import { Blend, Copy, Check, Plus, X, Shuffle, Download } from 'lucide-react'
+import { Select } from 'antd'
 import PageHeader from '../components/PageHeader'
 import { randomRgb, rgbToHex } from '../lib/colorUtils'
 
@@ -287,15 +288,14 @@ export default function GradientGenerator() {
 
             {/* Export resolution + download */}
             <div className="flex flex-col sm:flex-row gap-2">
-              <select
+              <Select
                 value={resolution}
-                onChange={(e) => setResolution(e.target.value)}
-                className="flex-1 px-3 py-2 rounded-lg bg-backgroundColor border border-borderColor text-sm text-textHeader focus:outline-none focus:border-accent transition-colors cursor-pointer"
-              >
-                {RESOLUTIONS.map(r => (
-                  <option key={r.id} value={r.id}>{r.label}</option>
-                ))}
-              </select>
+                onChange={setResolution}
+                className="flex-1"
+                popupMatchSelectWidth={false}
+                options={RESOLUTIONS.map(r => ({ value: r.label, label: r.label }))}
+                showSearch
+              />
               <button
                 onClick={downloadPng}
                 className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity shrink-0"
