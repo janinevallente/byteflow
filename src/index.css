@@ -22,32 +22,3 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-
-/* Theme antd Input to match the app's dark card design */
-.cheat-sheet-search.ant-input-affix-wrapper {
-  background-color: #16171d !important;
-  border-color: #2e303a !important;
-  border-radius: 0.75rem !important;
-  padding: 0.5rem 0.75rem;
-}
-
-.cheat-sheet-search.ant-input-affix-wrapper input.ant-input {
-  background-color: transparent !important;
-  color: #f3f4f6 !important;
-  font-size: 0.875rem;
-  font-family: "Poppins";
-}
-
-.cheat-sheet-search.ant-input-affix-wrapper input.ant-input::placeholder {
-  color: #9ca3af;
-}
-
-.cheat-sheet-search.ant-input-affix-wrapper:hover,
-.cheat-sheet-search.ant-input-affix-wrapper-focused {
-  border-color: #c084fc !important;
-  box-shadow: none !important;
-}
-
-.cheat-sheet-search .ant-input-clear-icon {
-  color: #9ca3af;
-}

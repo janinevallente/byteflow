@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react'
 import { BookOpen, Search, Copy, Check } from 'lucide-react'
 import { Input } from 'antd'
 import PageHeader from '../components/PageHeader'
-import { TAILWIND_CHEATSHEET } from '../data/TailwindCheatsheetData'
+import { TAILWIND_CHEATSHEET } from '../data/tailwindCheatSheetData'
 
 function CopyButton({ value, copied, onCopy, title }) {
   return (
@@ -56,9 +56,9 @@ export default function TailwindCheatSheet() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search classes, CSS, or sections…"
-          prefix={<Search size={15} className="text-text" />}
+          prefix={<Search size={15} color='#9459D0' className="me-1 text-text" />}
           allowClear
-          className="cheat-sheet-search"
+          className="py-2"
         />
       </div>
 
