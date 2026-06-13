@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { LifeBuoy, Copy, Check, Shuffle, Share2, X } from 'lucide-react'
+import { LifeBuoy, Copy, Check, Shuffle, SquareArrowOutUpRight, X } from 'lucide-react'
 import { Select } from 'antd'
 import {
   hexToRgb,
@@ -356,7 +356,7 @@ export default function ColorWheel() {
             onClick={() => openExport(harmonyColors)}
             className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-90 transition-all shrink-0"
           >
-            <Share2 size={14} /> Export Colors
+            <SquareArrowOutUpRight size={14} /> Export Colors
           </button>
         </div>
  
@@ -390,7 +390,7 @@ export default function ColorWheel() {
             onClick={() => openExport(harmonyColors)}
             className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-90 transition-all w-full sm:w-auto sm:self-center"
           >
-            <Share2 size={14} /> Export Colors
+            <SquareArrowOutUpRight size={14} /> Export Colors
           </button>
         </div>
       </div>
@@ -469,7 +469,7 @@ export default function ColorWheel() {
 
           <button
             onClick={handleRandom}
-            className="flex items-center gap-1.5 mt-3 px-3.5 py-2 rounded-lg text-sm font-medium bg-backgroundColor text-text border border-borderColor cursor-pointer hover:border-accent hover:text-accent transition-colors"
+            className="flex items-center gap-1.5 mt-4 px-3.5 py-2 rounded-lg text-sm font-medium bg-accentBg border border-accentBorder text-accent cursor-pointer hover:opacity-80 transition-opacity"
           >
             <Shuffle size={14} /> Random Color
           </button>
@@ -517,9 +517,9 @@ export default function ColorWheel() {
                   <span className="text-sm font-semibold text-textHeader">{h.label}</span>
                   <button
                     onClick={() => openExport(colors)}
-                    className="flex items-center gap-1 text-xs text-text bg-transparent border-none cursor-pointer hover:text-accent transition-colors"
+                    className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
                   >
-                    <Share2 size={12} /> Export
+                    <SquareArrowOutUpRight size={12} /> Export
                   </button>
                 </div>
                 <div className="flex h-12 rounded-xl overflow-hidden border border-borderColor">
