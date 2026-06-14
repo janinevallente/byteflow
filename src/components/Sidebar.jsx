@@ -124,9 +124,19 @@ export default function Sidebar({ activeTool, onSelectTool }) {
         </div>
 
         {mobileOpen && (
-          <div className="flex flex-col px-3 pb-3 max-h-[70vh] overflow-y-auto scrollbar-hide">
-            {/* Home — no category label */}
-            <NavItem id={null} label="Home" icon={House} />
+          <div className="flex flex-col px-3 pb-3 max-h-[70vh] overflow-y-auto scrollbar-hide bg-backgroundCard">
+            {/* Home Item */}
+            <button
+              onClick={() => handleSelect(null)}
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium w-full text-left border-none cursor-pointer transition-colors ${
+                activeTool === null
+                  ? 'bg-accentBg text-accent'
+                  : 'bg-transparent text-text hover:bg-accentBg hover:text-accent'
+              }`}
+            >
+              <House size={16} />
+              Home
+            </button>
 
             {categories.map(({ label, tools }) => (
               <div key={label}>
