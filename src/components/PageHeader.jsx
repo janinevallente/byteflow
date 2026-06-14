@@ -22,7 +22,6 @@ export default function PageHeader({ icon: Icon, title, description }) {
   }, [])
 
   return (
-    /* Changed flex-col to flex-col-reverse so search flips to the top on mobile */
     <div className="mb-6 sm:mb-8 flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between gap-4 relative">
       
       {/* Title & Description */}
@@ -39,7 +38,7 @@ export default function PageHeader({ icon: Icon, title, description }) {
       </div>
 
       {/* Search Container */}
-      <div ref={dropdownRef} className="w-full mb-3 lg:mb-0 lg:w-72 relative z-50">
+      <div ref={dropdownRef} className="w-full mb-3 lg:mb-0 lg:w-72 relative z-10 md:z-50">
         <div className="relative flex items-center">
           <Search 
             size={18} 
