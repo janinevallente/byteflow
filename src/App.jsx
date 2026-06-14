@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from 'react'
+import { useState, useEffect, Suspense, lazy } from 'react'
 import { SyncLoader } from 'react-spinners'
 import Sidebar from './components/Sidebar'
 import AntThemeProvider from './components/AntThemeProvider'
@@ -30,7 +30,24 @@ function PageLoader() {
 }
 
 function App() {
-  const [activeTool, setActiveTool] = useState(null)
+  // Read initial route state from URL string layout on boot
+  const [activeTool, setActiveTool] = useState(() => {
+    return window.location.hash.replace('#', '') || null
+  })
+
+  // Watch for programmatic back/forward popstate actions or modifications
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveTool(window.location.hash.replace('#', '') || null)
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  // Wrapped dispatcher to mutate path addresses dynamically
+  const navigateTo = (toolId) => {
+    window.location.hash = toolId || ''
+  }
 
   const renderPage = () => {
     switch (activeTool) {
@@ -49,14 +66,14 @@ function App() {
       case 'tailwind-flexbox-generator': return <TailwindFlexboxGenerator />
       case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
-      default: return <Home onSelectTool={setActiveTool} />
+      default: return <Home onSelectTool={navigateTo} />
     }
   }
 
   return (
     <AntThemeProvider>
       <div className="flex min-h-screen bg-backgroundColor">
-        <Sidebar activeTool={activeTool} onSelectTool={setActiveTool} />
+        <Sidebar activeTool={activeTool} onSelectTool={navigateTo} />
         <div className="flex flex-col flex-1 min-w-0 pt-14 md:pt-0">
           <main className="flex-1">
             <Suspense fallback={<PageLoader />}>
