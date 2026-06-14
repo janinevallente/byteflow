@@ -108,7 +108,7 @@ export default function ImageClipper() {
   const checkerboard = { background: 'repeating-conic-gradient(#2e303a 0% 25%, #16171d 0% 50%) 0 0 / 16px 16px' }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={Scissors}
         title="Image Clipper"

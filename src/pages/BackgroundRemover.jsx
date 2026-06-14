@@ -80,7 +80,7 @@ export default function BackgroundRemover() {
   const checkerboard = { background: 'repeating-conic-gradient(#3a3a3a 0% 25%, #2a2a2a 0% 50%) 0 0 / 16px 16px' }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8 font-poppins">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={Eraser}
         title="Background Remover"

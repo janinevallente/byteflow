@@ -43,7 +43,7 @@ export default function TailwindCheatSheet() {
   }, [query])
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={BookOpen}
         title="Tailwind CSS Cheat Sheet"

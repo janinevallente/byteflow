@@ -260,7 +260,7 @@ export default function CircleCropper() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={CircleDashed}
         title="Circle Cropper"

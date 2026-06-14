@@ -156,7 +156,7 @@ export default function PixelPicker() {
   const pickedHex = picked ? hexFromRgb(picked.r, picked.g, picked.b) : null
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins"> 
       <PageHeader
         icon={Pipette}
         title="Pixel Picker"

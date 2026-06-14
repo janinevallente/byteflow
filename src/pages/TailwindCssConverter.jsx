@@ -293,7 +293,7 @@ export default function TailwindCssConverter() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 font-poppins">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={ArrowLeftRight}
         title={mode === 'tw-to-css' ? 'Tailwind → CSS Converter' : 'CSS → Tailwind Converter'}
