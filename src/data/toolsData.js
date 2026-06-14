@@ -7,8 +7,12 @@ import {
   Palette,
   Contrast,
   Blend,
-  Sparkles,
   LifeBuoy,
+  Waves,
+  ArrowLeftRight,
+  Grid,
+  Columns,
+  BoxSelect,
 } from 'lucide-react'
 
 export const tools = [
@@ -74,5 +78,37 @@ export const tools = [
     icon: ImageIcon,
     label: 'Palette Extractor',
     description: 'Extract color palettes from any image. Get dominant colors and generate harmonious schemes.',
+  },
+
+  // Tailwind Utilities Category
+  {
+    id: 'tailwind-to-css',
+    icon: ArrowLeftRight,
+    label: 'Tailwind to CSS Converter',
+    description: 'Convert Tailwind utility class strings into raw CSS code blocks, or backward-parse standard CSS rules back into Tailwind equivalents.',
+  },
+  {
+    id: 'tailwind-grid-generator',
+    icon: Grid,
+    label: 'Tailwind Grid Generator',
+    description: 'Visually layout custom responsive grid patterns, adapt fraction dimensions or gaps, and export structural utility rows.',
+  },
+  {
+    id: 'tailwind-flexbox-generator',
+    icon: Columns,
+    label: 'Tailwind Flexbox Generator',
+    description: 'Configure and balance flex container positions, alignment dynamics, wrapper directions, and layouts interactively.',
+  },
+  {
+    id: 'tailwind-shadow-generator',
+    icon: BoxSelect,
+    label: 'Tailwind Shadow Generator',
+    description: 'Build complex custom layered inline or box-shadow modifiers targeting both Tailwind CSS v3 and v4 syntax parameters.',
+  },
+  {
+    id: 'tailwind-cheat-sheet',
+    icon: Waves,
+    label: 'Tailwind CSS Cheat Sheet',
+    description: 'A quick reference for Tailwind CSS utility classes, their CSS equivalents, and sample usage.',
   },
 ]

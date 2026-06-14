@@ -15,7 +15,11 @@ import {
   Palette,
   Contrast,
   Blend,
-  BookOpen,
+  ArrowLeftRight,
+  Grid,
+  Columns,
+  BoxSelect,
+  Waves,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -41,10 +45,19 @@ const categories = [
       { id: 'palette-extractor', label: 'Palette Extractor', icon: ImageIcon },
     ],
   },
+    {
+    label: 'Tailwind',
+    tools: [
+      { id: 'tailwind-css-converter', label: 'Tailwind to CSS Converter', icon: ArrowLeftRight },
+      { id: 'tailwind-grid-generator', label: 'Tailwind Grid Generator', icon: Grid },
+      { id: 'tailwind-flexbox-generator', label: 'Tailwind Flexbox Generator', icon: Columns },
+      { id: 'tailwind-shadow-generator', label: 'Tailwind Shadow Generator', icon: BoxSelect },
+    ],
+  },
   {
     label: 'Reference',
     tools: [
-      { id: 'tailwind-cheat-sheet', label: 'Tailwind CSS Cheat Sheet', icon: BookOpen },
+      { id: 'tailwind-cheat-sheet', label: 'Tailwind CSS Cheat Sheet', icon: Waves },
     ],
   },
 ]

@@ -15,6 +15,10 @@ const ColorConverter = lazy(() => import('./pages/ColorConverter'))
 const ContrastChecker = lazy(() => import('./pages/ContrastChecker'))
 const GradientGenerator = lazy(() => import('./pages/GradientGenerator'))
 const PaletteExtractor = lazy(() => import('./pages/PaletteExtractor'))
+const TailwindCssConverter = lazy(() => import('./pages/TailwindCssConverter'))
+const TailwindGridGenerator = lazy(() => import('./pages/TailwindGridGenerator'))
+const TailwindFlexboxGenerator = lazy(() => import('./pages/TailwindFlexboxGenerator'))
+const TailwindShadowGenerator = lazy(() => import('./pages/TailwindShadowGenerator'))
 const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
 
 function PageLoader() {
@@ -40,6 +44,10 @@ function App() {
       case 'contrast-checker': return <ContrastChecker />
       case 'gradient-generator': return <GradientGenerator />
       case 'palette-extractor': return <PaletteExtractor />
+      case 'tailwind-css-converter': return <TailwindCssConverter />
+      case 'tailwind-grid-generator': return <TailwindGridGenerator />
+      case 'tailwind-flexbox-generator': return <TailwindFlexboxGenerator />
+      case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
       default: return <Home onSelectTool={setActiveTool} />
     }
