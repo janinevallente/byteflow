@@ -2,7 +2,7 @@ import { tools } from "../data/toolsData"
 
 export default function Home({ onSelectTool }) {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-14">
+    <div className="mx-auto px-5 md:px-10 pt-14 pb-10 font-poppins">
       <div className="text-left mb-10">
         <h1 className="text-4xl font-bold mb-4 text-textHeader tracking-tight leading-tight">
           Byteflow
@@ -13,7 +13,7 @@ export default function Home({ onSelectTool }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
         {tools.map(({ id, icon: Icon, label, description, tags }) => (
           <button
             key={id}
@@ -32,7 +32,7 @@ export default function Home({ onSelectTool }) {
       </div>
 
       {/* About */}
-      <div className="max-w-6xl mx-auto mt-20 pt-10 border-t border-borderColor">
+      <div className="mx-auto mt-20 px-1 pt-10 border-t border-borderColor">
         <h2 className="text-xl font-bold text-textHeader mb-4">About</h2>
 
         {/* <p className="text-text text-[14px] leading-relaxed mb-4 max-w-3xl">
