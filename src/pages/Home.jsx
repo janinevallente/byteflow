@@ -66,18 +66,18 @@ export default function Home({ onSelectTool }) {
             </a>
           </div>
 
-          {/* <div>
+          <div>
             <h3 className="text-sm font-semibold text-textHeader mb-2">Source</h3>
-            <p className="text-text text-[14px] m-0">""</p>
-          </div> */}
+            <a
+              href="https://github.com/janinevallente/byteflow"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent text-sm hover:opacity-80 transition-opacity"
+            >
+              janinevallente/byteflow
+            </a>
+          </div>
         </div>
-
-        {/* <a
-          href="#"
-          className="text-accent text-sm underline hover:opacity-80 transition-opacity"
-        >
-          Read the story behind Byteflow
-        </a> */}
 
         <div className="border-t border-borderColor mt-8 pt-6">
           <p className="text-text text-xs leading-relaxed m-0">
