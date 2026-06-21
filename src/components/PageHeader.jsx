@@ -22,7 +22,7 @@ export default function PageHeader({ icon: Icon, title, description }) {
   }, [])
 
   return (
-    <div className="mb-6 sm:mb-8 flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between gap-4 relative">
+    <div className={`mb-6 sm:mb-8 flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between gap-4 relative ${isOpen ? 'z-[1050]' : 'z-10'}`}>
       
       {/* Title & Description */}
       <div className="flex-1">
@@ -38,7 +38,7 @@ export default function PageHeader({ icon: Icon, title, description }) {
       </div>
 
       {/* Search Container */}
-      <div ref={dropdownRef} className="w-full mb-3 lg:mb-0 lg:w-72 relative z-10 md:z-50">
+      <div ref={dropdownRef} className="w-full mb-3 lg:mb-0 lg:w-72 relative z-[1050]">
         <div className="relative flex items-center">
           <Search 
             size={18} 
