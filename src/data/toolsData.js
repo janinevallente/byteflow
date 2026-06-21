@@ -13,6 +13,7 @@ import {
   Grid,
   Columns,
   BoxSelect,
+  Globe2,
 } from 'lucide-react'
 
 export const tools = [
@@ -105,6 +106,16 @@ export const tools = [
     label: 'Tailwind Shadow Generator',
     description: 'Build complex custom layered inline or box-shadow modifiers targeting both Tailwind CSS v3 and v4 syntax parameters.',
   },
+  
+  // Network
+  {
+    id: 'ip-lookup',
+    icon: Globe2,
+    label: 'IP Address Lookup',
+    description: 'Instantly view configuration details, ISP, and geological metrics for your current public IP address alongside an interactive location map.',
+  },
+
+  // Reference
   {
     id: 'tailwind-cheat-sheet',
     icon: Waves,

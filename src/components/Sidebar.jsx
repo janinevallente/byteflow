@@ -20,6 +20,7 @@ import {
   Columns,
   BoxSelect,
   Waves,
+  Globe2,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -52,6 +53,12 @@ const categories = [
       { id: 'tailwind-grid-generator', label: 'Tailwind Grid Generator', icon: Grid },
       { id: 'tailwind-flexbox-generator', label: 'Tailwind Flexbox Generator', icon: Columns },
       { id: 'tailwind-shadow-generator', label: 'Tailwind Shadow Generator', icon: BoxSelect },
+    ],
+  },
+  {
+    label: 'Network',
+    tools: [
+      { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
     ],
   },
   {

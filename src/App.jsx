@@ -20,6 +20,7 @@ const TailwindGridGenerator = lazy(() => import('./pages/TailwindGridGenerator')
 const TailwindFlexboxGenerator = lazy(() => import('./pages/TailwindFlexboxGenerator'))
 const TailwindShadowGenerator = lazy(() => import('./pages/TailwindShadowGenerator'))
 const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
+const IpLookup = lazy(() => import('./pages/IpLookup'))
 
 function PageLoader() {
   return (
@@ -66,6 +67,7 @@ function App() {
       case 'tailwind-flexbox-generator': return <TailwindFlexboxGenerator />
       case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
+      case 'ip-lookup': return <IpLookup />
       default: return <Home onSelectTool={navigateTo} />
     }
   }
