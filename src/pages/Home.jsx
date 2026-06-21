@@ -49,7 +49,7 @@ export default function Home({ onSelectTool }) {
         </p>
 
         <p className="text-text text-[14px] leading-relaxed mb-8 max-w-3xl">
-          Built from a love for the real web: open, experimental, a little messy, and endlessly creative.
+          Built from a love for the real web: open, experimental, and endlessly creative.
           Byteflow exists to make every tech enthusiast work a little faster, clearer, and more enjoyable.
         </p>
 
