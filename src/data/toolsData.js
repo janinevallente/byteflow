@@ -14,6 +14,7 @@ import {
   Columns,
   BoxSelect,
   Globe2,
+  Globe,
 } from 'lucide-react'
 
 export const tools = [
@@ -113,6 +114,12 @@ export const tools = [
     icon: Globe2,
     label: 'IP Address Lookup',
     description: 'Instantly view configuration details, ISP, and geological metrics for your current public IP address alongside an interactive location map.',
+  },
+  {
+    id: 'dns-lookup',
+    icon: Globe,
+    label: 'DNS Lookup',
+    description: 'Query A, AAAA, MX, NS, TXT, CNAME, and more DNS record types for any domain. Runs entirely in your browser via DNS-over-HTTPS — no server, no logs.',
   },
 
   // Reference

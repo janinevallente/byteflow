@@ -21,6 +21,7 @@ import {
   BoxSelect,
   Waves,
   Globe2,
+  Globe,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -59,6 +60,7 @@ const categories = [
     label: 'Network',
     tools: [
       { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
+      { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
     ],
   },
   {
