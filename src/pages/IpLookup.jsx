@@ -171,7 +171,7 @@ export default function IpLookup() {
   }, [result])
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8 font-poppins">
+    <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         icon={Globe2}
         title="IP Address Lookup"
