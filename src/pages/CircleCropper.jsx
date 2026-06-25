@@ -267,9 +267,9 @@ export default function CircleCropper() {
         description="Drag to move the circle, drag the handle to resize. Crop any image into a perfect circle."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         {/* Upload + Controls */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Crop Area</h2>
             {image && (
@@ -286,7 +286,7 @@ export default function CircleCropper() {
             <div
               onClick={() => inputRef.current?.click()}
               onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all
+              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all flex-1 flex flex-col items-center justify-center
                 ${dragOver ? 'border-accent bg-accentBg' : 'border-borderColor hover:border-accent hover:bg-accentBg'}`}
             >
               <Upload size={40} className="text-accent mx-auto mb-3" />
@@ -295,9 +295,9 @@ export default function CircleCropper() {
               <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 flex-1">
               {/* Circle preview with overlay */}
-              <div className="flex justify-center">
+              <div className="flex justify-center flex-1 items-center">
                 <div
                   ref={containerRef}
                   style={{
@@ -449,7 +449,7 @@ export default function CircleCropper() {
         </div>
 
         {/* Result */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Result</h2>
             {result && (
@@ -463,7 +463,7 @@ export default function CircleCropper() {
           </div>
 
           <div
-            className="rounded-xl border border-borderColor min-h-80 flex items-center justify-center"
+            className="rounded-xl border border-borderColor min-h-80 flex-1 flex items-center justify-center"
             style={{ background: 'repeating-conic-gradient(#2e303a 0% 25%, #16171d 0% 50%) 0 0 / 16px 16px' }}
           >
             {result ? (

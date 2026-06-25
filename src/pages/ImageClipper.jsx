@@ -115,9 +115,9 @@ export default function ImageClipper() {
         description="Automatically trim transparent edges from PNG images down to the tightest bounding box."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         {/* Upload */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Input PNG</h2>
             {image && (
@@ -134,7 +134,7 @@ export default function ImageClipper() {
             <div
               onClick={() => inputRef.current?.click()}
               onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all
+              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all flex-1 flex flex-col items-center justify-center
                 ${dragOver ? 'border-accent bg-accentBg' : 'border-borderColor hover:border-accent hover:bg-accentBg'}`}
             >
               <Upload size={40} className="text-accent mx-auto mb-3" />
@@ -143,8 +143,8 @@ export default function ImageClipper() {
               <input ref={inputRef} type="file" accept="image/png" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (
-            <div>
-              <div className="rounded-xl overflow-hidden border border-borderColor min-h-[200px] flex items-center justify-center" style={checkerboard}>
+            <div className="flex flex-col flex-1">
+              <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-[160px] sm:min-h-[200px] flex-1 flex items-center justify-center" style={checkerboard}>
                 <img src={preview} alt="Input" className="max-w-full max-h-72 object-contain block" />
               </div>
               <p className="text-xs text-text mt-2">{image.name} · {(image.size / 1024).toFixed(1)} KB</p>
@@ -173,7 +173,7 @@ export default function ImageClipper() {
         </div>
 
         {/* Result */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Result</h2>
             {result && (
@@ -186,7 +186,7 @@ export default function ImageClipper() {
             )}
           </div>
 
-          <div className="rounded-xl overflow-hidden border border-borderColor min-h-72 flex items-center justify-center" style={checkerboard}>
+          <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-60 sm:min-h-80 flex-1 flex items-center justify-center" style={checkerboard}>
             {result ? (
               <img src={result} alt="Trimmed" className="max-w-full max-h-72 object-contain block" />
             ) : (

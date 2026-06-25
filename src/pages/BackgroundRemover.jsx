@@ -87,9 +87,9 @@ export default function BackgroundRemover() {
         description="Remove backgrounds from any image using AI — runs entirely in your browser. Output is a transparent PNG."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         {/* Upload Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-4 sm:p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-3 sm:mb-4">
             <h2 className="text-xs sm:text-sm font-semibold text-textHeader m-0">Upload Image</h2>
             {image && (
@@ -103,7 +103,7 @@ export default function BackgroundRemover() {
             <div
               onClick={() => inputRef.current?.click()}
               onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-xl px-4 sm:px-6 py-8 sm:py-12 text-center cursor-pointer transition-all
+              className={`border-2 border-dashed rounded-xl px-6 py-12 text-center cursor-pointer transition-all flex-1 flex flex-col items-center justify-center
                 ${dragOver ? 'border-accent bg-accentBg' : 'border-borderColor bg-transparent hover:border-accent hover:bg-accentBg'}`}
             >
               <Upload size={32} className="text-accent mx-auto mb-2.5 sm:mb-3 sm:size-10" />
@@ -112,8 +112,8 @@ export default function BackgroundRemover() {
               <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (
-            <div>
-              <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-[160px] sm:min-h-[200px] flex items-center justify-center" style={checkerboard}>
+            <div className="flex flex-col flex-1">
+              <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-[160px] sm:min-h-[200px] flex-1 flex items-center justify-center" style={checkerboard}>
                 <img src={preview} alt="Preview" className="max-w-full max-h-64 sm:max-h-80 object-contain block" />
               </div>
               <p className="text-[11px] sm:text-xs text-text mt-2 mb-0">
@@ -158,7 +158,7 @@ export default function BackgroundRemover() {
         </div>
 
         {/* Result Panel */}
-        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-4 sm:p-6">
+        <div className="bg-backgroundCard border border-borderColor rounded-2xl p-6 flex flex-col h-full">
           <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
             <h2 className="text-xs sm:text-sm font-semibold text-textHeader m-0">Result</h2>
             {result && (
@@ -171,7 +171,7 @@ export default function BackgroundRemover() {
             )}
           </div>
 
-          <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-60 sm:min-h-80 flex items-center justify-center" style={checkerboard}>
+          <div className="rounded-[10px] overflow-hidden border border-borderColor min-h-60 sm:min-h-80 flex-1 flex items-center justify-center" style={checkerboard}>
             {result ? (
               <img src={result} alt="Result" className="max-w-full max-h-64 sm:max-h-80 object-contain block" />
             ) : (
