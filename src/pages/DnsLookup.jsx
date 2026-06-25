@@ -386,6 +386,7 @@ export default function DnsLookup() {
         icon={Globe}
         title="DNS Lookup"
         description="Query DNS records for any domain directly from your browser — no server middleman, no logs."
+        badge="Beta"
       />
 
       {/* Privacy notice */}

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Search } from 'lucide-react'
 import { tools } from '../data/toolsData'
 
-export default function PageHeader({ icon: Icon, title, description }) {
+export default function PageHeader({ icon: Icon, title, description, badge = null }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
@@ -30,7 +30,14 @@ export default function PageHeader({ icon: Icon, title, description }) {
           <span className="bg-accentBg border border-accentBorder rounded-[10px] p-1.5 sm:p-2 text-accent shrink-0">
             <Icon size={18} className="sm:size-5" />
           </span>
-          <h1 className="text-xl sm:text-2xl font-semibold text-textHeader m-0">{title}</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-textHeader m-0 flex items-center gap-2">
+            {title}
+            {badge && (
+              <span className="text-[10px] md:text-xs font-medium bg-accentBg text-accent border border-accentBorder px-1 md:px-2 md:py-0.5 rounded-md uppercase tracking-wide">
+                {badge}
+              </span>
+            )}
+          </h1>
         </div>
         <p className="text-text text-xs sm:text-sm m-0">
           {description}
