@@ -50,6 +50,7 @@ async function lookupIp(signal) {
   // Normalize response properties to feed your existing UI layers perfectly
   return {
     ip: d.ip,
+    hostname: d.hostname,
     city: d.city,
     region: d.region,
     country: d.country,
