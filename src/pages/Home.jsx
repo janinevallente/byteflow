@@ -57,7 +57,7 @@ export default function Home({ onSelectTool }) {
           <div>
             <h3 className="text-sm font-semibold text-textHeader mb-2">Made by</h3>
             <a
-              href="https://janinevallente.vercel.app/"
+              href="https://janinevallente.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent text-sm hover:opacity-80 transition-opacity"
