@@ -15,6 +15,7 @@ import {
   BoxSelect,
   Globe2,
   Globe,
+  KeyRound,
 } from 'lucide-react'
 
 export const tools = [
@@ -120,6 +121,14 @@ export const tools = [
     icon: Globe,
     label: 'DNS Lookup',
     description: 'Query A, AAAA, MX, NS, TXT, CNAME, and more DNS record types for any domain. Runs entirely in your browser via DNS-over-HTTPS — no server, no logs.',
+  },
+
+  // Security
+  {
+    id: 'password-generator',
+    icon: KeyRound,
+    label: 'Password Generator',
+    description: 'Generate strong, random passwords using window.crypto for true cryptographic randomness. Runs entirely in your browser.',
   },
 
   // Reference

@@ -34,6 +34,14 @@ export default function AntThemeProvider({ children }) {
             controlOutline: 'rgba(148, 89, 208, 0.2)',
             colorPrimaryHover: '#9459d0',
           },
+          Checkbox: {
+            colorPrimary: '#9459d0',
+            colorPrimaryHover: '#9459d0',
+            colorBgContainer: '#0f1015',
+            colorBorder: '#2e303a',
+            colorText: '#f3f4f6',
+            borderRadiusSM: 6,
+          },
         },
       }}
     >

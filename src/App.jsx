@@ -22,6 +22,7 @@ const TailwindShadowGenerator = lazy(() => import('./pages/TailwindShadowGenerat
 const IpLookup = lazy(() => import('./pages/IpLookup'))
 const DnsLookup = lazy(() => import('./pages/DnsLookup'))
 const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
+const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator'))
 
 function PageLoader() {
   return (
@@ -70,6 +71,7 @@ function App() {
       case 'dns-lookup': return <DnsLookup />
       case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
+      case 'password-generator': return <PasswordGenerator />
       default: return <Home onSelectTool={navigateTo} />
     }
   }

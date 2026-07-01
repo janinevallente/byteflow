@@ -22,6 +22,7 @@ import {
   Waves,
   Globe2,
   Globe,
+  KeyRound,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -61,6 +62,12 @@ const categories = [
     tools: [
       { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
       { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
+    ],
+  },
+  {
+    label: 'Security',
+    tools: [
+      { id: 'password-generator', label: 'Password Generator', icon: KeyRound },
     ],
   },
   {
