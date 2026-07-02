@@ -23,6 +23,7 @@ import {
   Globe2,
   Globe,
   KeyRound,
+  Hash,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -68,6 +69,7 @@ const categories = [
     label: 'Security',
     tools: [
       { id: 'password-generator', label: 'Password Generator', icon: KeyRound },
+      { id: 'hash-generator', label: 'Hash Generator', icon: Hash },
     ],
   },
   {

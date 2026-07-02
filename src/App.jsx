@@ -21,8 +21,9 @@ const TailwindFlexboxGenerator = lazy(() => import('./pages/TailwindFlexboxGener
 const TailwindShadowGenerator = lazy(() => import('./pages/TailwindShadowGenerator'))
 const IpLookup = lazy(() => import('./pages/IpLookup'))
 const DnsLookup = lazy(() => import('./pages/DnsLookup'))
-const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
 const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator'))
+const HashGenerator = lazy(() => import('./pages/HashGenerator'))
+const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
 
 function PageLoader() {
   return (
@@ -67,11 +68,14 @@ function App() {
       case 'tailwind-css-converter': return <TailwindCssConverter />
       case 'tailwind-grid-generator': return <TailwindGridGenerator />
       case 'tailwind-flexbox-generator': return <TailwindFlexboxGenerator />
+      case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'ip-lookup': return <IpLookup />
       case 'dns-lookup': return <DnsLookup />
-      case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
-      case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
       case 'password-generator': return <PasswordGenerator />
+      case 'hash-generator': return <HashGenerator />
+      case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
+      
+
       default: return <Home onSelectTool={navigateTo} />
     }
   }
