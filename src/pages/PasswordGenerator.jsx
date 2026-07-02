@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { KeyRound, Copy, Check, RefreshCw, ShieldCheck, Info, Trash2 } from 'lucide-react'
 import { Checkbox } from 'antd'
-import { KeyRound, Copy, Check, RefreshCw, ShieldCheck, Info, Trash2, Sparkles } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
 import { generatePassword, calculateEntropy, strengthFromEntropy } from '../lib/passwordUtils'
+import PageHeader from '../components/PageHeader'
 
 // Special id for the main password display's copy button, kept distinct from
 // history row indices (0, 1, 2...) so they never collide.
@@ -166,7 +166,6 @@ export default function PasswordGenerator() {
             disabled={noOptionSelected}
             className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-accent text-white cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <Sparkles size={16} className="shrink-0" />
             Generate Password
           </button>
         </div>
