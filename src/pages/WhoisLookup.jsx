@@ -12,6 +12,7 @@ import {
   Network,
   ChevronDown,
   ChevronUp,
+  Globe,
 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { getRequest } from '../lib/apiClient'
@@ -466,6 +467,19 @@ export default function WhoisLookup() {
               )}
             </div>
           </SectionCard>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {!rdap && !loading && !error && (
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <div className="bg-accentBg border border-accentBorder rounded-2xl p-4 mb-4 text-accent">
+            <Globe size={28} />
+          </div>
+          <p className="text-sm text-textHeader font-medium m-0 mb-1">Enter a domain to get started</p>
+          <p className="text-xs text-text m-0 max-w-xs">
+            Try <code className="font-mono text-accent">cloudflare.com</code> or any domain you want to inspect.
+          </p>
         </div>
       )}
     </div>
