@@ -22,6 +22,7 @@ import {
   Waves,
   Globe2,
   Globe,
+  ScrollText,
   KeyRound,
   Hash,
 } from 'lucide-react'
@@ -63,6 +64,7 @@ const categories = [
     tools: [
       { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
       { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
+      { id: 'whois-lookup', label: 'WHOIS Lookup', icon: ScrollText },
     ],
   },
   {

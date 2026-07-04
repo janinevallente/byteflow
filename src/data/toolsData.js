@@ -17,6 +17,7 @@ import {
   Globe,
   KeyRound,
   Hash,
+  ScrollText,
 } from 'lucide-react'
 
 export const tools = [
@@ -122,6 +123,12 @@ export const tools = [
     icon: Globe,
     label: 'DNS Lookup',
     description: 'Query A, AAAA, MX, NS, TXT, CNAME, and more DNS record types for any domain.',
+  },
+  {
+    id: 'whois-lookup',
+    icon: ScrollText,
+    label: 'WHOIS Lookup',
+    description: 'Look up domain registration data via RDAP — domain info, registrar, registrant contact, and live DNS records.',
   },
 
   // Security
