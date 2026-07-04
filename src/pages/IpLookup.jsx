@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react'
+import axios from 'axios'
 import { Modal } from 'antd'
 import {
   Globe2,
@@ -13,23 +14,26 @@ import {
 } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import IpLookupMap from '../components/IpLookupMap' 
+import { getRequest } from '../lib/apiClient'
 
 // API layer constants
 const IPV4_RE = /^(\d{1,3}\.){3}\d{1,3}$/
 const IPV6_RE = /^[0-9a-fA-F:]+:[0-9a-fA-F:]*$/
 
 async function fetchJson(url, signal) {
-  const res = await fetch(url, { signal })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  return res.json()
+  const res = await getRequest(url, {}, {}, { signal })
+  if (!res.success) throw res.error || new Error('HTTP Request Failed')
+  return res.data
 }
 
 async function lookupIp(signal) {
   // Query ipinfo's highly stable free tier
-  const res = await fetch('https://ipinfo.io/json', { signal })
-  if (!res.ok) throw new Error(`HTTP Error: ${res.status}`)
+  const res = await getRequest('https://ipinfo.io/json', {}, {}, { signal })
+  if (!res.success) {
+    throw res.error || new Error(`HTTP Error: Request failed`)
+  }
   
-  const d = await res.json()
+  const d = res.data
   
   // Parse latitude and longitude from the "lat,lon" string safely
   const [lat, lon] = d.loc ? d.loc.split(',').map(Number) : [undefined, undefined]
@@ -140,7 +144,7 @@ export default function IpLookup() {
         setResult(data)
       })
       .catch((err) => {
-        if (err.name === 'AbortError') return
+        if (axios.isCancel(err) || err.name === 'AbortError') return
         setError(err.message || 'Could not look up your IP address.')
         setResult(null)
       })
@@ -278,7 +282,7 @@ export default function IpLookup() {
                   <MapPin size={14} className="text-accent" /> Estimated IP Location Map
                 </p>
                 <div className="flex-1 w-full relative rounded-xl overflow-hidden border border-borderColor bg-backgroundColor">
-                  {typeof result.latitude === 'number' && typeof result.longitude === 'number' ? (
+                  {typeof result?.latitude === 'number' && typeof result?.longitude === 'number' ? (
                     <IpLookupMap 
                       latitude={result.latitude}
                       longitude={result.longitude}
