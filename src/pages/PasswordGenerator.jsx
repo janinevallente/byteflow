@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Copy, Check, RefreshCw, ShieldCheck, Info, Trash2 } from 'lucide-react'
 import { Checkbox } from 'antd'
-import { generatePassword, calculateEntropy, strengthFromEntropy } from '../lib/passwordUtils'
-import PageHeader from '../components/PageHeader'
+import { generatePassword, calculateEntropy, strengthFromEntropy } from '../utils/passwordUtils'
+import PageHeader from '../components/ui/PageHeader'
 
 // Special id for the main password display's copy button, kept distinct from
 // history row indices (0, 1, 2...) so they never collide.

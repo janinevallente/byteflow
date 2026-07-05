@@ -11,9 +11,9 @@ import {
   MapPin,
   Eye
 } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
-import IpLookupMap from '../components/IpLookupMap' 
-import { getRequest } from '../lib/apiClient'
+import PageHeader from '../components/ui/PageHeader'
+import IpLookupMap from '../components/ui/IpLookupMap' 
+import { getRequest } from '../api/apiClient'
 
 // API layer constants
 const IPV4_RE = /^(\d{1,3}\.){3}\d{1,3}$/

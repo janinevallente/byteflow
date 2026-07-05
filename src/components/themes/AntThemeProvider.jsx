@@ -1,5 +1,5 @@
 import { ConfigProvider, theme } from 'antd'
-import { useTheme } from '../lib/ThemeContext'
+import { useTheme } from './ThemeContext'
 
 // Mirrors the CSS custom properties in src/index.css. antd's theme algorithm
 // derives hover/active/disabled shades from these via real color math at

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Copy, Check, Trash2, ShieldCheck } from 'lucide-react'
 import CryptoJS from 'crypto-js'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 const ALGORITHMS = [
   { id: 'MD5', label: 'MD5', hash: (text) => CryptoJS.MD5(text) },

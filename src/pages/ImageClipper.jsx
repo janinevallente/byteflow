@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { Upload, Download, X, Loader2, Image as ImageIcon } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 export default function ImageClipper() {
   const [image, setImage] = useState(null)

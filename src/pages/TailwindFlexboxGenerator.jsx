@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Copy, Check, ExternalLink } from 'lucide-react'
 import { Select, Switch } from 'antd'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 const DIRECTION_OPTS = [
   { value: 'flex-row', label: 'Row' },

@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Search, Copy, Check } from 'lucide-react'
 import { Input } from 'antd'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 import { TAILWIND_CHEATSHEET } from '../data/tailwindCheatSheetData'
 
 function CopyButton({ value, copied, onCopy, title }) {

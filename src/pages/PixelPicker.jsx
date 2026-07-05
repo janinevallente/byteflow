@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { Pipette, Upload, Copy, Check, X } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 function rgbToHsl(r, g, b) {
   r /= 255; g /= 255; b /= 255

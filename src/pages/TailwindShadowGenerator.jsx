@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Copy, Check, Shuffle } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 const PRESET_COLORS = [
   '#6b7280','#9ca3af','#d1d5db','#e5e7eb','#f3f4f6','#f9fafb','#f0f0f0','#e0e0e0','#bdbdbd',

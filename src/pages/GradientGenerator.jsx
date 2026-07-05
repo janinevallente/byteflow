@@ -1,8 +1,8 @@
 import { useState, useCallback, useRef } from 'react'
 import { Copy, Check, Plus, X, Shuffle, Download } from 'lucide-react'
 import { Select } from 'antd'
-import PageHeader from '../components/PageHeader'
-import { randomRgb, rgbToHex } from '../lib/colorUtils'
+import PageHeader from '../components/ui/PageHeader'
+import { randomRgb, rgbToHex } from '../utils/colorUtils'
 
 const TYPES = ['linear', 'radial', 'conic']
 

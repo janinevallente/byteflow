@@ -13,8 +13,8 @@ import {
   getHarmony,
   randomRgb,
   clamp,
-} from '../lib/colorUtils'
-import PageHeader from '../components/PageHeader'
+} from '../utils/colorUtils'
+import PageHeader from '../components/ui/PageHeader'
 
 const WHEEL_SIZE = 260
 

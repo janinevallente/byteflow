@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
 import { Check, X, RefreshCw, Target, Loader2, Info, Shuffle } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 import { 
   RawHexToRgb,
   RawRgbToHex,
@@ -8,7 +8,7 @@ import {
   contrastRatio,
   wcagLevels,
   randomRgb
-} from '../lib/colorUtils'
+} from '../utils/colorUtils'
 
 
 function ResultBadge({ pass, label }) {

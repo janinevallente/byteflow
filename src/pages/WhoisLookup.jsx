@@ -14,8 +14,8 @@ import {
   ChevronUp,
   Globe,
 } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
-import { getRequest } from '../lib/apiClient'
+import PageHeader from '../components/ui/PageHeader'
+import { getRequest } from '../api/apiClient'
 
 // RDAP (Registration Data Access Protocol) is the modern, structured
 // replacement for legacy port-43 WHOIS. rdap.org acts as a bootstrap service:

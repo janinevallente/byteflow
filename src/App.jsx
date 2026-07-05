@@ -1,7 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
 import { SyncLoader } from 'react-spinners'
-import Sidebar from './components/Sidebar'
-import AntThemeProvider from './components/AntThemeProvider'
+import Sidebar from './components/ui/Sidebar'
+import AntThemeProvider from './components/themes/AntThemeProvider'
 import Home from './pages/Home'
 import './index.css'
 

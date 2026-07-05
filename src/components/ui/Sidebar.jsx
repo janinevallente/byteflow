@@ -29,7 +29,7 @@ import {
   Sun,
   Moon,
 } from 'lucide-react'
-import { useTheme } from '../lib/ThemeContext'
+import { useTheme } from '../themes/ThemeContext'
 
 const VERSION = __APP_VERSION__
 

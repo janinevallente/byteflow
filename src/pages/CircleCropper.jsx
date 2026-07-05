@@ -12,7 +12,7 @@ import {
   Minus,
   Plus
 } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 export default function CircleCropper() {
   const [image, setImage] = useState(null)

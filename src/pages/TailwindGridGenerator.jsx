@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Copy, Check } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 import { Select } from 'antd'
 
 const FLOW_OPTIONS = [

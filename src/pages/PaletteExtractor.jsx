@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { Image as ImageIcon, Upload, X, Copy, Check } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
-import { rgbToHex } from '../lib/colorUtils'
+import PageHeader from '../components/ui/PageHeader'
+import { rgbToHex } from '../utils/colorUtils'
 
 const SWATCH_COUNTS = [4, 6, 8, 10]
 

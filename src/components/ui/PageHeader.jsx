@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Search } from 'lucide-react'
-import { tools } from '../data/toolsData'
+import { tools } from '../../data/toolsData'
 
 export default function PageHeader({ icon: Icon, title, description, badge = null }) {
   const [searchQuery, setSearchQuery] = useState('')

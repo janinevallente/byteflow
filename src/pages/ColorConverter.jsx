@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { Select } from 'antd'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 import {
   hexToRgb,
   rgbToHex,
@@ -17,7 +17,7 @@ import {
   oklchToRgb,
   getAllFormats,
   clamp,
-} from '../lib/colorUtils'
+} from '../utils/colorUtils'
 
 const INPUT_FORMATS = [
   { id: 'HEX', label: 'HEX', placeholder: '#3b82f6' },

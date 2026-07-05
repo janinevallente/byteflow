@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { Upload, Download, Image as ImageIcon, X } from 'lucide-react'
 import { removeBackground } from '@imgly/background-removal'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 export default function BackgroundRemover() {
   const [image, setImage] = useState(null)

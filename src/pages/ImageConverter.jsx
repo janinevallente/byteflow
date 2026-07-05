@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 const FORMATS = ['PNG', 'JPEG', 'WebP', 'GIF', 'BMP', 'TIFF', 'ICO']
 const QUALITY_FORMATS = ['JPEG', 'WebP']

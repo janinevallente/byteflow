@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { ArrowLeftRight, Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/ui/PageHeader'
 
 // Core client-side translation engine
 class PureLocalConverter {
