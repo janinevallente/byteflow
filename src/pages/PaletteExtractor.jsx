@@ -154,7 +154,7 @@ export default function PaletteExtractor() {
             >
               <Upload size={40} className="text-accent mx-auto mb-3" />
               <p className="font-medium text-sm text-textHeader mb-1">Drop image here or click to upload</p>
-              <p className="text-text text-xs">PNG, JPG, WebP, GIF supported</p>
+              <p className="text-text text-xs">PNG, JPG, WebP supported</p>
               <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (

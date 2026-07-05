@@ -107,7 +107,7 @@ export default function BackgroundRemover() {
             >
               <Upload size={32} className="text-accent mx-auto mb-2.5 sm:mb-3 sm:size-10" />
               <p className="font-medium text-xs sm:text-sm text-textHeader mb-1">Drop image here or click to upload</p>
-              <p className="text-text text-[11px] sm:text-xs">PNG, JPG, WebP, GIF supported</p>
+              <p className="text-text text-[11px] sm:text-xs">PNG, JPG, WebP supported</p>
               <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
             </div>
           ) : (

@@ -2,15 +2,14 @@ import { useState, useRef, useCallback } from 'react'
 import { Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
-const FORMATS = ['PNG', 'JPEG', 'WebP', 'GIF', 'BMP', 'TIFF', 'ICO']
+const FORMATS = ['PNG', 'JPEG', 'WebP', 'BMP', 'TIFF', 'ICO']
 const QUALITY_FORMATS = ['JPEG', 'WebP']
-const MIME = { PNG: 'image/png', JPEG: 'image/jpeg', WebP: 'image/webp', GIF: 'image/gif', BMP: 'image/bmp', TIFF: 'image/tiff', ICO: 'image/x-icon' }
-const EXT = { PNG: 'png', JPEG: 'jpg', WebP: 'webp', GIF: 'gif', BMP: 'bmp', TIFF: 'tiff', ICO: 'ico' }
+const MIME = { PNG: 'image/png', JPEG: 'image/jpeg', WebP: 'image/webp', BMP: 'image/bmp', TIFF: 'image/tiff', ICO: 'image/x-icon' }
+const EXT = { PNG: 'png', JPEG: 'jpg', WebP: 'webp', BMP: 'bmp', TIFF: 'tiff', ICO: 'ico' }
 const FORMAT_INFO = [
   ['PNG', 'Lossless, transparency support'],
   ['JPEG', 'Lossy, small file size for photos'],
   ['WebP', 'Modern, efficient, transparency'],
-  ['GIF', 'Animations, limited colors'],
   ['BMP', 'Uncompressed, large files'],
   ['TIFF', 'High quality, print use'],
   ['ICO', 'Windows icon format'],
@@ -100,7 +99,7 @@ export default function ImageConverter() {
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         title="Image Converter"
-        description="Convert images between PNG, JPEG, WebP, GIF, BMP, TIFF, ICO — with optional resize. All processing happens in your browser."
+        description="Convert images between PNG, JPEG, WebP, BMP, TIFF, ICO — with optional resize. All processing happens in your browser."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -227,7 +226,7 @@ export default function ImageConverter() {
               >
                 <Upload size={44} className="text-accent mx-auto mb-3" />
                 <p className="font-medium text-sm text-textHeader mb-1">Drop images here or click to upload</p>
-                <p className="text-text text-xs">PNG, JPEG, WebP, GIF, BMP, TIFF supported · Multiple files OK</p>
+                <p className="text-text text-xs">PNG, JPEG, WebP, BMP, TIFF supported · Multiple files OK</p>
               </div>
             ) : (
               <div onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave} className="flex flex-col gap-2">
