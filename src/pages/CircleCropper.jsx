@@ -1,5 +1,17 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { Upload, Download, X, Loader2, ZoomIn, ZoomOut, Move, Maximize2, Minus, Plus } from 'lucide-react'
+import { 
+  CircleDashed,
+  Upload,
+  Download,
+  X,
+  Loader2,
+  ZoomIn,
+  ZoomOut,
+  Move,
+  Maximize2,
+  Minus,
+  Plus
+} from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 export default function CircleCropper() {

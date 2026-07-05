@@ -55,7 +55,7 @@ export default function TailwindCheatSheet() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search classes, CSS, or sections…"
-          prefix={<Search size={15} color='#9459D0' className="me-1 text-text" />}
+          prefix={<Search size={15} color='#2F49AB' className="me-1 text-text" />}
           allowClear
           className="py-2"
         />

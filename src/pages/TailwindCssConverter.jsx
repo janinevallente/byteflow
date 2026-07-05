@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
+import { ArrowLeftRight, Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 // Core client-side translation engine

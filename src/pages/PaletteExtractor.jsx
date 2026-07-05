@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Upload, X, Copy, Check } from 'lucide-react'
+import { Image as ImageIcon, Upload, X, Copy, Check } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { rgbToHex } from '../lib/colorUtils'
 

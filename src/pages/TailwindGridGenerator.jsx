@@ -212,7 +212,13 @@ export default function TailwindGridGenerator() {
               }}
             >
               {items.map((_, i) => (
-                <div key={i} className="rounded-lg min-h-[48px]" style={{ background: 'rgba(148, 89, 208, 0.15)' }} />
+                <div
+                  key={i}
+                  className="flex items-center justify-center text-white text-sm font-bold rounded-lg shrink-0"
+                  style={{ background: '#3B82F6'}}
+                >
+                  {i + 1}
+                </div>
               ))}
             </div>
           </div>

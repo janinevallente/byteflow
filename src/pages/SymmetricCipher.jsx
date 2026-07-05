@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import CryptoJS from 'crypto-js'
 import { Select } from 'antd'
-import { Unlock, Copy, Check, Trash2, ShieldCheck, Eye, EyeOff, ArrowRightLeft } from 'lucide-react'
+import { Lock, Unlock, Copy, Check, Trash2, ShieldCheck, Eye, EyeOff, ArrowRightLeft } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 // Block ciphers support a chosen mode + padding scheme; stream ciphers
