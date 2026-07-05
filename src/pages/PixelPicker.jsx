@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Upload, Copy, Check, X } from 'lucide-react'
+import { Pipette, Upload, Copy, Check, X } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 function rgbToHsl(r, g, b) {
@@ -166,19 +166,21 @@ export default function PixelPicker() {
 
           {/* Image canvas */}
           {!preview ? (
-            <div
-              onClick={() => inputRef.current?.click()}
-              onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-2xl px-6 py-16 text-center cursor-pointer transition-all
-                ${dragOver ? 'border-accent bg-accentBg' : 'border-borderColor hover:border-accent hover:bg-accentBg'}`}
-            >
-              <Pipette size={40} className="text-accent mx-auto mb-3" />
-              <p className="font-medium text-sm text-textHeader mb-1">Drop an image or click to upload</p>
-              <p className="text-text text-xs">Then click any pixel to pick its color</p>
+            <div className="bg-backgroundCard border border-borderColor rounded-2xl overflow-hidden flex-1">
+              <div
+                onClick={() => inputRef.current?.click()}
+                onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}
+                className={`px-6 py-16 text-center cursor-pointer transition-all h-full flex flex-col items-center justify-center
+                  ${dragOver ? 'bg-accentBg' : 'hover:bg-accentBg'}`}
+              >
+                <Pipette size={40} className="text-accent mx-auto mb-3" />
+                <p className="font-medium text-sm text-textHeader mb-1">Drop an image or click to upload</p>
+                <p className="text-text text-xs">Then click any pixel to pick its color</p>
+              </div>
             </div>
           ) : (
-            <div className="bg-backgroundCard border border-borderColor rounded-2xl overflow-hidden">
-              <div className="relative">
+            <div className="bg-backgroundCard border border-borderColor rounded-2xl overflow-hidden flex-1 flex flex-col">
+              <div className="relative flex-1 flex items-center justify-center">
                 <img
                   ref={imgRef}
                   src={preview}
@@ -189,7 +191,7 @@ export default function PixelPicker() {
                 />
                 <canvas ref={canvasRef} className="hidden" />
               </div>
-              <p className="text-[11px] text-text text-center py-2 border-t border-borderColor">
+              <p className="text-[11px] text-text text-center py-2 border-t border-borderColor shrink-0">
                 Click anywhere on the image to pick a color
               </p>
             </div>
@@ -225,9 +227,9 @@ export default function PixelPicker() {
         </div>
 
         {/* Right: history */}
-        <div className="lg:col-span-1">
-          <div className="bg-backgroundCard border border-borderColor rounded-2xl p-5 sticky top-20">
-            <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-1 flex flex-col">
+          <div className="bg-backgroundCard border border-borderColor rounded-2xl p-5 sticky top-20 flex-1 flex flex-col">
+            <div className="flex items-center justify-between mb-4 shrink-0">
               <h2 className="text-sm font-semibold text-textHeader m-0">History</h2>
               {history.length > 0 && (
                 <button
@@ -240,28 +242,28 @@ export default function PixelPicker() {
             </div>
 
             {history.length === 0 ? (
-              <div className="text-center py-10">
+              <div className="flex-1 flex flex-col items-center justify-center">
                 <Pipette size={28} className="text-text opacity-30 mx-auto mb-2" />
                 <p className="text-text text-xs">Picked colors will appear here</p>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
+              <div className="flex-1 flex flex-col gap-2 overflow-y-auto max-h-[400px]">
                 {history.map((color, i) => {
                   const hex = hexFromRgb(color.r, color.g, color.b)
                   return (
                     <button
                       key={i}
                       onClick={() => { setPicked(color) }}
-                      className="flex items-center gap-3 px-3 py-2 rounded-xl border border-borderColor bg-backgroundColor hover:border-accent transition-colors cursor-pointer w-full text-left"
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl border border-borderColor bg-backgroundColor hover:border-accent transition-colors cursor-pointer w-full text-left shrink-0"
                     >
                       <span
                         className="w-7 h-7 rounded-lg border border-borderColor shrink-0"
                         style={{ background: hex }}
                       />
-                      <span className="text-[13px] text-textHeader font-mono">{hex.toUpperCase()}</span>
+                      <span className="text-[13px] text-textHeader font-mono truncate">{hex.toUpperCase()}</span>
                       <button
                         onClick={(e) => { e.stopPropagation(); copyToClipboard(hex.toUpperCase()) }}
-                        className="ml-auto text-text hover:text-accent transition-colors bg-transparent border-none cursor-pointer p-1"
+                        className="ml-auto text-text hover:text-accent transition-colors bg-transparent border-none cursor-pointer p-1 shrink-0"
                       >
                         {copied === hex.toUpperCase() ? <Check size={13} className="text-green-400" /> : <Copy size={13} />}
                       </button>
