@@ -25,6 +25,7 @@ import {
   ScrollText,
   KeyRound,
   Hash,
+  Lock,
 } from 'lucide-react'
 
 const VERSION = __APP_VERSION__
@@ -71,6 +72,7 @@ const categories = [
     tools: [
       { id: 'password-generator', label: 'Password Generator', icon: KeyRound },
       { id: 'hash-generator', label: 'Hash Generator', icon: Hash },
+      { id: 'symmetric-cipher', label: 'Symmetric Cipher', icon: Lock },
     ],
   },
   {

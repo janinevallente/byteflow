@@ -23,6 +23,7 @@ const IpLookup = lazy(() => import('./pages/IpLookup'))
 const WhoisLookup = lazy(() => import('./pages/WhoisLookup'))
 const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator'))
 const HashGenerator = lazy(() => import('./pages/HashGenerator'))
+const SymmetricCipher = lazy(() => import('./pages/SymmetricCipher'))
 const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
 
 function PageLoader() {
@@ -74,6 +75,7 @@ function App() {
       case 'whois-lookup': return <WhoisLookup />
       case 'password-generator': return <PasswordGenerator />
       case 'hash-generator': return <HashGenerator />
+      case 'symmetric-cipher': return <SymmetricCipher />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
       
 

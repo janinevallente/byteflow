@@ -16,6 +16,7 @@ import {
   Globe2,
   KeyRound,
   Hash,
+  Lock,
   ScrollText,
 } from 'lucide-react'
 
@@ -136,6 +137,12 @@ export const tools = [
     icon: Hash,
     label: 'Hash Generator',
     description: 'Generate MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160 hashes from text.',
+  },
+  {
+    id: 'symmetric-cipher',
+    icon: Lock,
+    label: 'Symmetric Cipher',
+    description: 'Symmetric encryption and decryption using AES, DES, Triple DES, RC4, or Rabbit.',
   },
 
   // Reference
