@@ -52,7 +52,7 @@ export const tools = [
     id: 'pixel-picker',
     icon: Pipette,
     label: 'Pixel Picker',
-    description: 'Pick colors from any image or directly from your screen. Get HEX, RGB, HSL, and OKLCH values.',
+    description: 'Pick colors from any image. Get HEX, RGB, HSL, and OKLCH values.',
   },
   {
     id: 'color-converter',

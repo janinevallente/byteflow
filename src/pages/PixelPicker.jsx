@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Pipette, Upload, Copy, Check, X, Monitor } from 'lucide-react'
+import { Pipette, Upload, Copy, Check, X } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 function rgbToHsl(r, g, b) {
@@ -79,8 +79,6 @@ export default function PixelPicker() {
   const [history, setHistory] = useState([])
   const [dragOver, setDragOver] = useState(false)
   const [copied, setCopied] = useState(null)
-  const [eyedropperSupported] = useState(() => 'EyeDropper' in window)
-  const [eyedropperActive, setEyedropperActive] = useState(false)
 
   const inputRef = useRef()
   const canvasRef = useRef()
@@ -122,25 +120,6 @@ export default function PixelPicker() {
     setHistory(prev => [color, ...prev].slice(0, 16))
   }
 
-  const pickFromScreen = async () => {
-    if (!eyedropperSupported) return
-    setEyedropperActive(true)
-    try {
-      const eyeDropper = new window.EyeDropper()
-      const result = await eyeDropper.open()
-      const hex = result.sRGBHex
-      const r = parseInt(hex.slice(1, 3), 16)
-      const g = parseInt(hex.slice(3, 5), 16)
-      const b = parseInt(hex.slice(5, 7), 16)
-      const color = { r, g, b }
-      setPicked(color)
-      setHistory(prev => [color, ...prev].slice(0, 16))
-    } catch {
-      // user cancelled
-    }
-    setEyedropperActive(false)
-  }
-
   const copyToClipboard = (value) => {
     navigator.clipboard.writeText(value)
     setCopied(value)
@@ -160,7 +139,7 @@ export default function PixelPicker() {
       <PageHeader
         icon={Pipette}
         title="Pixel Picker"
-        description="Pick any color from an uploaded image or directly from your screen. Get HEX, RGB, HSL, and OKLCH values instantly."
+        description="Upload an image and click any pixel to pick its color. Get HEX, RGB, HSL, and OKLCH values instantly."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -175,20 +154,6 @@ export default function PixelPicker() {
             >
               <Upload size={15} /> Upload Image
             </button>
-            {eyedropperSupported && (
-              <button
-                onClick={pickFromScreen}
-                disabled={eyedropperActive}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all cursor-pointer
-                  ${eyedropperActive
-                    ? 'bg-accentBg border-accent text-accent opacity-70 cursor-not-allowed'
-                    : 'bg-backgroundColor border-borderColor text-text hover:border-accent hover:text-accent'
-                  }`}
-              >
-                <Monitor size={15} />
-                {eyedropperActive ? 'Pick from screen…' : 'Pick from Screen'}
-              </button>
-            )}
             {image && (
               <button
                 onClick={reset}
