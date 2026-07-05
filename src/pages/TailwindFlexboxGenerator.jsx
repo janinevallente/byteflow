@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { Columns, Copy, Check, ExternalLink } from 'lucide-react'
+import { Copy, Check, ExternalLink } from 'lucide-react'
 import { Select, Switch } from 'antd'
 import PageHeader from '../components/PageHeader'
 
@@ -128,7 +128,6 @@ export default function TailwindFlexboxGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Columns}
         title="Tailwind Flexbox Generator"
         description="Generate Tailwind CSS classes for your Flexbox layouts."
       />

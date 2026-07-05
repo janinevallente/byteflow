@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { Grid, Copy, Check } from 'lucide-react'
+import { Copy, Check } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { Select } from 'antd'
 
@@ -116,7 +116,6 @@ export default function TailwindGridGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Grid}
         title="Tailwind Grid Generator"
         description="Visually build CSS grid layouts and copy the Tailwind CSS classes."
       />

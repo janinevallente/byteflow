@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { ArrowLeftRight, Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
+import { Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 // Core client-side translation engine
@@ -295,7 +295,6 @@ export default function TailwindCssConverter() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={ArrowLeftRight}
         title={mode === 'tw-to-css' ? 'Tailwind → CSS Converter' : 'CSS → Tailwind Converter'}
         description="Instant local parsing engine running 100% on your client device"
       />

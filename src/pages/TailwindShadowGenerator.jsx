@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { BoxSelect, Copy, Check, Shuffle } from 'lucide-react'
+import { Copy, Check, Shuffle } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 const PRESET_COLORS = [
@@ -155,7 +155,6 @@ export default function TailwindShadowGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={BoxSelect}
         title="Tailwind Shadow Generator"
         description="Build custom box-shadow utilities for Tailwind CSS v3 and v4."
       />

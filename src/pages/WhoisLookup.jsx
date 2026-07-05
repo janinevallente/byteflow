@@ -1,6 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
 import {
-  ScrollText,
   Search,
   Copy,
   Check,
@@ -320,7 +319,6 @@ export default function WhoisLookup() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={ScrollText}
         title="WHOIS Lookup"
         description="Look up domain registration data via RDAP — domain info, registrar, registrant contact, and live DNS records."
         badge="Beta"

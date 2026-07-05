@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
-import { Blend, Copy, Check, Plus, X, Shuffle, Download } from 'lucide-react'
+import { Copy, Check, Plus, X, Shuffle, Download } from 'lucide-react'
 import { Select } from 'antd'
 import PageHeader from '../components/PageHeader'
 import { randomRgb, rgbToHex } from '../lib/colorUtils'
@@ -172,7 +172,6 @@ export default function GradientGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Blend}
         title="Gradient Generator"
         description="Create linear, radial, and conic gradients and copy the CSS or Tailwind classes."
       />

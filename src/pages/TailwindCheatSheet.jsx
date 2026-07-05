@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { BookOpen, Search, Copy, Check } from 'lucide-react'
+import { Search, Copy, Check } from 'lucide-react'
 import { Input } from 'antd'
 import PageHeader from '../components/PageHeader'
 import { TAILWIND_CHEATSHEET } from '../data/tailwindCheatSheetData'
@@ -45,7 +45,6 @@ export default function TailwindCheatSheet() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={BookOpen}
         title="Tailwind CSS Cheat Sheet"
         description="A quick reference for Tailwind CSS utility classes, their CSS equivalents, and sample usage."
       />

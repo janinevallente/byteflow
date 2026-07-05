@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Hash, Copy, Check, Trash2, ShieldCheck } from 'lucide-react'
+import { Copy, Check, Trash2, ShieldCheck } from 'lucide-react'
 import CryptoJS from 'crypto-js'
 import PageHeader from '../components/PageHeader'
 
@@ -48,7 +48,6 @@ export default function HashGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Hash}
         title="Hash Generator"
         description="Generate MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160 hashes from text."
       />

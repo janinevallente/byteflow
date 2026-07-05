@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { CircleDashed, Upload, Download, X, Loader2, ZoomIn, ZoomOut, Move, Maximize2, Minus, Plus } from 'lucide-react'
+import { Upload, Download, X, Loader2, ZoomIn, ZoomOut, Move, Maximize2, Minus, Plus } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 export default function CircleCropper() {
@@ -262,7 +262,6 @@ export default function CircleCropper() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={CircleDashed}
         title="Circle Cropper"
         description="Drag to move the circle, drag the handle to resize. Crop any image into a perfect circle."
       />

@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Pipette, Upload, Copy, Check, X } from 'lucide-react'
+import { Upload, Copy, Check, X } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 function rgbToHsl(r, g, b) {
@@ -137,7 +137,6 @@ export default function PixelPicker() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins"> 
       <PageHeader
-        icon={Pipette}
         title="Pixel Picker"
         description="Upload an image and click any pixel to pick its color. Get HEX, RGB, HSL, and OKLCH values instantly."
       />

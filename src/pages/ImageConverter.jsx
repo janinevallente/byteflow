@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { ImageIcon, Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
+import { Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 const FORMATS = ['PNG', 'JPEG', 'WebP', 'GIF', 'BMP', 'TIFF', 'ICO']
@@ -99,7 +99,6 @@ export default function ImageConverter() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={ImageIcon}
         title="Image Converter"
         description="Convert images between PNG, JPEG, WebP, GIF, BMP, TIFF, ICO — with optional resize. All processing happens in your browser."
       />

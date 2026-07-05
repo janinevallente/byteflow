@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import CryptoJS from 'crypto-js'
 import { Select } from 'antd'
-import { Lock, Unlock, Copy, Check, Trash2, ShieldCheck, Eye, EyeOff, ArrowRightLeft } from 'lucide-react'
+import { Unlock, Copy, Check, Trash2, ShieldCheck, Eye, EyeOff, ArrowRightLeft } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 
 // Block ciphers support a chosen mode + padding scheme; stream ciphers
@@ -98,7 +98,6 @@ export default function EncryptDecrypt() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Lock}
         title="Symmetric Cipher"
         description="Symmetric encryption and decryption — AES, DES, Triple DES, RC4, and Rabbit."
         badge="Beta"

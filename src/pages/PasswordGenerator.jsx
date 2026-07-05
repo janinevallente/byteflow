@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { KeyRound, Copy, Check, RefreshCw, ShieldCheck, Info, Trash2 } from 'lucide-react'
+import { Copy, Check, RefreshCw, ShieldCheck, Info, Trash2 } from 'lucide-react'
 import { Checkbox } from 'antd'
 import { generatePassword, calculateEntropy, strengthFromEntropy } from '../lib/passwordUtils'
 import PageHeader from '../components/PageHeader'
@@ -89,7 +89,6 @@ export default function PasswordGenerator() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={KeyRound}
         title="Password Generator"
         description="Generate strong, random passwords using cryptographically secure randomness."
       />

@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { Contrast, Check, X, RefreshCw, Target, Loader2, Info, Shuffle } from 'lucide-react'
+import { Check, X, RefreshCw, Target, Loader2, Info, Shuffle } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { 
   RawHexToRgb,
@@ -242,7 +242,6 @@ export default function ContrastChecker() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Contrast}
         title="Contrast Checker"
         description="WCAG 2.1 color contrast compliance checker. Click fix buttons to automatically meet accessibility standards."
       />

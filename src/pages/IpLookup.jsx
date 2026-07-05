@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect, useMemo } from 'react'
 import axios from 'axios'
 import { Modal } from 'antd'
 import {
-  Globe2,
   Copy,
   Check,
   RefreshCw,
@@ -178,7 +177,6 @@ export default function IpLookup() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Globe2}
         title="IP Address Lookup"
         description="View configuration details and geological metrics for your current public IP address."
       />

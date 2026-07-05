@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react'
-import { Palette, Copy, Check } from 'lucide-react'
+import { Copy, Check } from 'lucide-react'
 import { Select } from 'antd'
 import PageHeader from '../components/PageHeader'
 import {
@@ -147,7 +147,6 @@ export default function ColorConverter() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={Palette}
         title="Color Converter"
         description="Convert between color formats — HEX, RGB, decimal RGB, HSL, LAB, LCH, OKLAB, and OKLCH."
       />

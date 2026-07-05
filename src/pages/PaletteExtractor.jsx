@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Image as ImageIcon, Upload, X, Copy, Check } from 'lucide-react'
+import { Upload, X, Copy, Check } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { rgbToHex } from '../lib/colorUtils'
 
@@ -129,7 +129,6 @@ export default function PaletteExtractor() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={ImageIcon}
         title="Palette Extractor"
         description="Extract a color palette from any image, right in your browser."
       />

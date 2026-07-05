@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { LifeBuoy, Copy, Check, Shuffle, SquareArrowOutUpRight, X } from 'lucide-react'
+import { Copy, Check, Shuffle, SquareArrowOutUpRight, X } from 'lucide-react'
 import { Select } from 'antd'
 import {
   hexToRgb,
@@ -300,7 +300,6 @@ export default function ColorWheel() {
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
-        icon={LifeBuoy}
         title="Color Wheel"
         description="Create perfect color palettes with our color wheel. Start with a base color and find complementary, analogous, triadic and other schemes to elevate your designs."
       />

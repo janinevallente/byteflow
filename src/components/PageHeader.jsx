@@ -27,9 +27,6 @@ export default function PageHeader({ icon: Icon, title, description, badge = nul
       {/* Title & Description */}
       <div className="flex-1">
         <div className="flex items-center gap-2.5 sm:gap-3 mb-1.5 sm:mb-2">
-          <span className="bg-accentBg border border-accentBorder rounded-[10px] p-1.5 sm:p-2 text-accent shrink-0">
-            <Icon size={18} className="sm:size-5" />
-          </span>
           <h1 className="text-xl sm:text-2xl font-semibold text-textHeader m-0 flex items-center gap-2">
             {title}
             {badge && (
