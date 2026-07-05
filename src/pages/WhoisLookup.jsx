@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react'
 import {
+  ScrollText,
   Search,
   Copy,
   Check,
