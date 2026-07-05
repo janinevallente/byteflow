@@ -30,7 +30,7 @@ export default function IpLookupMap({ latitude, longitude, label }) {
       center={position}
       zoom={10}
       scrollWheelZoom={false}
-      style={{ height: '100%', width: '100%', background: '#0f1015,' }}
+      style={{ height: '100%', width: '100%', background: 'var(--color-background)' }}
       key={`${latitude}-${longitude}`}
     >
       <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />

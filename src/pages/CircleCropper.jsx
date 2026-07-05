@@ -307,7 +307,7 @@ export default function CircleCropper() {
                     overflow: 'hidden',
                     border: '2px solid var(--tw-border-opacity, 1)',
                     borderRadius: '12px',
-                    background: 'repeating-conic-gradient(#2e303a 0% 25%, #16171d 0% 50%) 0 0 / 16px 16px',
+                    background: 'repeating-conic-gradient(var(--color-border) 0% 25%, var(--color-surface) 0% 50%) 0 0 / 16px 16px',
                     cursor: isDraggingCircle ? 'grabbing' : 'grab',
                   }}
                   className="border-borderColor select-none"
@@ -464,7 +464,7 @@ export default function CircleCropper() {
 
           <div
             className="rounded-xl border border-borderColor min-h-80 flex-1 flex items-center justify-center"
-            style={{ background: 'repeating-conic-gradient(#2e303a 0% 25%, #16171d 0% 50%) 0 0 / 16px 16px' }}
+            style={{ background: 'repeating-conic-gradient(var(--color-border) 0% 25%, var(--color-surface) 0% 50%) 0 0 / 16px 16px' }}
           >
             {result ? (
               <img src={result} alt="Circle crop result" className="max-w-full max-h-80 object-contain block rounded-full shadow-lg" />

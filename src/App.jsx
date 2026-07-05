@@ -29,7 +29,7 @@ const TailwindCheatSheet = lazy(() => import('./pages/TailwindCheatSheet'))
 function PageLoader() {
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
-      <SyncLoader color="#9459d0" size={13} />
+      <SyncLoader color="#3B5BDB" size={13} />
     </div>
   )
 }
@@ -71,7 +71,6 @@ function App() {
       case 'tailwind-flexbox-generator': return <TailwindFlexboxGenerator />
       case 'tailwind-shadow-generator': return <TailwindShadowGenerator />
       case 'ip-lookup': return <IpLookup />
-      case 'dns-lookup': return <DnsLookup />
       case 'whois-lookup': return <WhoisLookup />
       case 'password-generator': return <PasswordGenerator />
       case 'hash-generator': return <HashGenerator />

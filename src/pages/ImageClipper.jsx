@@ -105,7 +105,7 @@ export default function ImageClipper() {
     if (inputRef.current) inputRef.current.value = ''
   }
 
-  const checkerboard = { background: 'repeating-conic-gradient(#2e303a 0% 25%, #16171d 0% 50%) 0 0 / 16px 16px' }
+  const checkerboard = { background: 'repeating-conic-gradient(var(--color-border) 0% 25%, var(--color-surface) 0% 50%) 0 0 / 16px 16px' }
 
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">

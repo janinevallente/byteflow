@@ -26,7 +26,10 @@ import {
   KeyRound,
   Hash,
   Lock,
+  Sun,
+  Moon,
 } from 'lucide-react'
+import { useTheme } from '../lib/ThemeContext'
 
 const VERSION = __APP_VERSION__
 
@@ -86,6 +89,7 @@ const categories = [
 export default function Sidebar({ activeTool, onSelectTool }) {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { themeMode, toggleTheme } = useTheme()
 
   const handleSelect = (id) => {
     onSelectTool(id)
@@ -135,13 +139,23 @@ export default function Sidebar({ activeTool, onSelectTool }) {
             </span>
             Byteflow
           </button>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="bg-transparent border-none cursor-pointer text-text p-1.5 rounded-lg hover:bg-accentBg hover:text-accent transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleTheme}
+              className="bg-transparent border-none cursor-pointer text-text p-1.5 rounded-lg hover:bg-accentBg hover:text-accent transition-colors"
+              aria-label="Toggle color theme"
+              title={themeMode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {themeMode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="bg-transparent border-none cursor-pointer text-text p-1.5 rounded-lg hover:bg-accentBg hover:text-accent transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         {mobileOpen && (
@@ -226,6 +240,29 @@ export default function Sidebar({ activeTool, onSelectTool }) {
             </div>
           ))}
         </nav>
+
+        {/* Theme toggle */}
+        <div className={`border-t border-borderColor flex ${collapsed ? 'justify-center py-2' : 'px-2 py-2'}`}>
+          {collapsed ? (
+            <Tooltip title={themeMode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} placement="right">
+              <button
+                onClick={toggleTheme}
+                className="flex items-center justify-center px-[10px] py-2.5 rounded-lg border-none bg-transparent text-text cursor-pointer hover:bg-accentBg hover:text-accent transition-colors w-full"
+                aria-label="Toggle color theme"
+              >
+                {themeMode === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
+            </Tooltip>
+          ) : (
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2.5 px-3 py-2 rounded-lg border-none bg-transparent text-text text-sm cursor-pointer hover:bg-accentBg hover:text-accent transition-colors w-full text-left"
+            >
+              {themeMode === 'dark' ? <Sun size={16} className="shrink-0" /> : <Moon size={16} className="shrink-0" />}
+              {themeMode === 'dark' ? 'Light mode' : 'Dark mode'}
+            </button>
+          )}
+        </div>
 
         {/* Version */}
         <div className={`border-t border-borderColor flex items-center ${collapsed ? 'justify-center py-3' : 'px-4 py-3'}`}>
