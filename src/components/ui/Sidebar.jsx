@@ -28,6 +28,7 @@ import {
   Lock,
   Sun,
   Moon,
+  Star,
 } from 'lucide-react'
 import { useTheme } from '../themes/ThemeContext'
 
@@ -41,6 +42,7 @@ const categories = [
       { id: 'image-converter', label: 'Image Converter', icon: ImageIcon },
       { id: 'image-clipper', label: 'Image Clipper', icon: Scissors },
       { id: 'circle-cropper', label: 'Circle Cropper', icon: CircleDashed },
+      { id: 'favicon-generator', label: 'Favicon Generator', icon: Star },
     ],
   },
   {

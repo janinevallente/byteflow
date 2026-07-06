@@ -9,6 +9,7 @@ const BackgroundRemover = lazy(() => import('./pages/BackgroundRemover'))
 const ImageClipper = lazy(() => import('./pages/ImageClipper'))
 const CircleCropper = lazy(() => import('./pages/CircleCropper'))
 const ImageConverter = lazy(() => import('./pages/ImageConverter'))
+const FaviconGenerator = lazy(() => import('./pages/FaviconGenerator'))
 const PixelPicker = lazy(() => import('./pages/PixelPicker'))
 const ColorWheel = lazy(() => import('./pages/ColorWheel'))
 const ColorConverter = lazy(() => import('./pages/ColorConverter'))
@@ -60,6 +61,7 @@ function App() {
       case 'image-clipper': return <ImageClipper />
       case 'circle-cropper': return <CircleCropper />
       case 'image-converter': return <ImageConverter />
+      case 'favicon-generator': return <FaviconGenerator />
       case 'pixel-picker': return <PixelPicker />
       case 'color-wheel': return <ColorWheel />
       case 'color-converter': return <ColorConverter />

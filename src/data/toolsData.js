@@ -18,6 +18,7 @@ import {
   Hash,
   Lock,
   ScrollText,
+  Star,
 } from 'lucide-react'
 
 export const tools = [
@@ -45,6 +46,12 @@ export const tools = [
     icon: CircleDashed,
     label: 'Circle Cropper',
     description: 'Crop any image into a perfect circle. Drag & resize the circle overlay, then export as transparent PNG.',
+  },
+  {
+    id: 'favicon-generator',
+    icon: Star,
+    label: 'Favicon Generator',
+    description: 'Generate favicons in all standard sizes (16×16 to 512×512) plus .ico, Apple Touch, Android, and PWA icons.',
   },
   
   // Colors Category
