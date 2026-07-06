@@ -2,17 +2,17 @@ import { useState, useRef, useCallback } from 'react'
 import { Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
-const FORMATS = ['PNG', 'JPEG', 'WebP', 'BMP', 'TIFF', 'ICO']
-const QUALITY_FORMATS = ['JPEG', 'WebP']
-const MIME = { PNG: 'image/png', JPEG: 'image/jpeg', WebP: 'image/webp', BMP: 'image/bmp', TIFF: 'image/tiff', ICO: 'image/x-icon' }
-const EXT = { PNG: 'png', JPEG: 'jpg', WebP: 'webp', BMP: 'bmp', TIFF: 'tiff', ICO: 'ico' }
+const FORMATS = ['PNG', 'JPEG', 'WebP', 'BMP', 'TIFF', 'AVIF']
+const QUALITY_FORMATS = ['JPEG', 'WebP', 'AVIF']
+const MIME = { PNG: 'image/png', JPEG: 'image/jpeg', WebP: 'image/webp', BMP: 'image/bmp', TIFF: 'image/tiff', AVIF: 'image/avif' }
+const EXT = { PNG: 'png', JPEG: 'jpg', WebP: 'webp', BMP: 'bmp', TIFF: 'tiff', AVIF: 'avif' }
 const FORMAT_INFO = [
   ['PNG', 'Lossless, transparency support'],
   ['JPEG', 'Lossy, small file size for photos'],
   ['WebP', 'Modern, efficient, transparency'],
   ['BMP', 'Uncompressed, large files'],
   ['TIFF', 'High quality, print use'],
-  ['ICO', 'Windows icon format'],
+  ['AVIF', 'Modern, highly efficient compression'],
 ]
 
 export default function ImageConverter() {
@@ -99,7 +99,7 @@ export default function ImageConverter() {
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
       <PageHeader
         title="Image Converter"
-        description="Convert images between PNG, JPEG, WebP, BMP, TIFF, ICO — with optional resize. All processing happens in your browser."
+        description="Convert images between PNG, JPEG, WebP, BMP, TIFF, AVIF — with optional resize. All processing happens in your browser."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -109,7 +109,7 @@ export default function ImageConverter() {
           {/* Format picker */}
           <div className="bg-backgroundCard border border-borderColor rounded-2xl p-5 shadow-shadowColor">
             <h2 className="text-sm font-semibold text-textHeader mb-3 m-0">Output Format</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {FORMATS.map(fmt => (
                 <button
                   key={fmt}

@@ -33,7 +33,7 @@ export const tools = [
     id: 'image-converter',
     icon: ImageIcon,
     label: 'Image Converter',
-    description: 'Convert between PNG, JPEG, WebP, BMP, TIFF, ICO. Batch processing with resize options.',
+    description: 'Convert between PNG, JPEG, WebP, BMP, TIFF, AVIF. Batch processing with resize options.',
   },
   {
     id: 'image-clipper',
