@@ -76,10 +76,6 @@ async function buildIco(canvas32) {
   return new Blob([buf], { type: 'image/x-icon' })
 }
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
-
 export default function FaviconGenerator() {
   const [sourceFile, setSourceFile] = useState(null)   // { file, objectUrl, img }
   const [previews,   setPreviews]   = useState([])     // [{ size, label, tag, objectUrl }]
@@ -88,10 +84,7 @@ export default function FaviconGenerator() {
   const [copiedSnippet, setCopiedSnippet] = useState(false)
   const inputRef = useRef()
 
-  // ------------------------------------------------------------------
   // File intake
-  // ------------------------------------------------------------------
-
   const loadImage = useCallback((file) => {
     if (!file || !file.type.startsWith('image/')) return
 
