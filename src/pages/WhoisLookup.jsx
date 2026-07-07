@@ -5,7 +5,6 @@ import {
   Copy,
   Check,
   Loader2,
-  ShieldAlert,
   ShieldCheck,
   Building2,
   UserRound,
@@ -13,6 +12,7 @@ import {
   ChevronDown,
   ChevronUp,
   Globe,
+  CircleX,
 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 import { getRequest } from '../api/apiClient'
@@ -437,7 +437,7 @@ export default function WhoisLookup() {
       {/* Error banner */}
       {error && (
         <div className="mb-5 p-4 rounded-2xl bg-red-500/10 border border-red-400/30 flex items-start gap-2.5">
-          <ShieldAlert size={16} className="text-red-400 shrink-0 mt-0.5" />
+          <CircleX size={16} className="text-red-400 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm text-red-400 font-medium m-0">Lookup failed</p>
             <p className="text-xs text-red-400/80 m-0 mt-0.5">{error}</p>
