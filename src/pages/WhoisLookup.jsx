@@ -21,12 +21,14 @@ import { getRequest } from '../api/apiClient'
 // replacement for legacy port-43 WHOIS. rdap.org acts as a bootstrap service:
 // it looks up which registry is authoritative for the TLD and redirects to
 // that registry's own RDAP server, which responds with JSON directly to the
-// browser — no Byteflow server ever sees the query.
+// browser.
 const RDAP_BOOTSTRAP = 'https://rdap.org/domain/'
 
 // Cloudflare's public DNS-over-HTTPS resolver
 const DOH_URL = 'https://cloudflare-dns.com/dns-query'
-const LIVE_RECORD_TYPES = ['A', 'AAAA', 'MX', 'NS', 'TXT']
+const LIVE_RECORD_TYPES = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'TXT', 'SOA', 'PTR', 'SRV', 'CAA', 'DS', 'DNSKEY']
+// DS/DNSKEY only exist for domains with DNSSEC enabled
+const DNSSEC_RECORD_TYPES = new Set(['DS', 'DNSKEY'])
 
 function isValidHostname(h) {
   return /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/.test(h)
@@ -181,10 +183,80 @@ async function fetchLiveDnsRecords(domain, signal) {
   for (const outcome of settled) {
     if (outcome.status === 'fulfilled') {
       const { type, data } = outcome.value
-      results[type] = (data.Answer ?? []).map(a => a.data)
+      results[type] = data.Answer ?? []
     }
   }
   return results
+}
+
+function stripTrailingDot(s = '') {
+  return s.replace(/\.$/, '')
+}
+
+// Cloudflare's DoH JSON returns each answer's value as a single presentation-
+// format string (e.g. "10 smtp.google.com." for MX, or a space-separated
+// SOA/DS/DNSKEY payload). This breaks each record type's raw `data` string
+// into the same structured columns a real DNS table shows (dnschecker.org-
+// style) instead of one opaque blob per row.
+function parseRecordRow(type, entry, domain) {
+  const name = stripTrailingDot(entry.name || domain)
+  const ttl = entry.TTL
+  const data = entry.data ?? ''
+  const base = { Type: type, 'Domain Name': name, TTL: ttl }
+
+  switch (type) {
+    case 'A':
+    case 'AAAA':
+      return { ...base, Address: data }
+
+    case 'CNAME':
+    case 'NS':
+    case 'PTR':
+      return { ...base, 'Canonical Name': stripTrailingDot(data) }
+
+    case 'MX': {
+      const [preference, ...rest] = data.split(' ')
+      return { ...base, Preference: preference, Address: stripTrailingDot(rest.join(' ')) }
+    }
+
+    case 'SRV': {
+      const [priority, weight, port, ...target] = data.split(' ')
+      return { ...base, Priority: priority, Weight: weight, Port: port, Target: stripTrailingDot(target.join(' ')) }
+    }
+
+    case 'SOA': {
+      const [mname, rname, serial, refresh, retry, expire] = data.split(' ')
+      return {
+        ...base,
+        'Primary NS': stripTrailingDot(mname),
+        'Responsible Email': stripTrailingDot(rname),
+        Serial: serial,
+        Refresh: refresh,
+        Retry: retry,
+        Expire: expire,
+      }
+    }
+
+    case 'TXT':
+      // Long TXT records arrive as multiple quoted chunks: "part1" "part2"
+      return { ...base, Record: data.replace(/^"|"$/g, '').replace(/"\s*"/g, '') }
+
+    case 'CAA':
+      return { ...base, Record: data }
+
+    case 'DS': {
+      const [keyTag, algorithm, digestType, ...digest] = data.split(' ')
+      return { ...base, 'Key Tag': keyTag, Algorithm: algorithm, 'Digest Type': digestType, Digest: digest.join(' ') }
+    }
+
+    case 'DNSKEY': {
+      const [flags, protocol, algorithm, ...publicKey] = data.split(' ')
+      return { ...base, Flags: flags, Protocol: protocol, Algorithm: algorithm, 'Public Key': publicKey.join(' ') }
+    }
+
+    default:
+      return { ...base, Record: data }
+  }
 }
 
 //UI component helpers
@@ -423,47 +495,77 @@ export default function WhoisLookup() {
             )}
           </SectionCard>
 
-          {/* DNS Records */}
+          {/* DNS Records — every record type is always shown, as a proper
+              table with columns specific to that record type (matching how
+              tools like dnschecker.org present them), rather than a flat
+              list of raw strings.*/}
           <SectionCard icon={Network} title="DNS Records">
-            <div className="flex flex-col gap-3">
-              {rdap.nameservers?.length > 0 && (
-                <div>
-                  <div className="text-[10px] font-semibold tracking-wider text-text uppercase mb-1.5">Nameservers (from registry)</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {rdap.nameservers.map((ns, i) => (
-                      <span key={i} className="px-2.5 py-1 rounded-lg bg-backgroundColor border border-borderColor text-xs font-mono text-textHeader">
-                        {ns.ldhName?.toLowerCase()}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+            <div className="flex flex-col gap-4">
+              {liveDns && LIVE_RECORD_TYPES.map(type => {
+                const answers = liveDns[type] ?? []
+                const rows = answers.map(a => parseRecordRow(type, a, domain))
+                const columns = rows[0] ? Object.keys(rows[0]) : []
 
-              {liveDns && LIVE_RECORD_TYPES.map(type => (
-                liveDns[type]?.length > 0 && (
+                return (
                   <div key={type}>
-                    <div className="text-[10px] font-semibold tracking-wider text-text uppercase mb-1.5">{type} Records (live)</div>
-                    <div className="flex flex-col gap-1">
-                      {liveDns[type].map((val, i) => (
-                        <div key={i} className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-lg bg-backgroundColor border border-borderColor">
-                          <span className="text-xs font-mono text-textHeader truncate">{val}</span>
-                          <button
-                            onClick={() => copy(val, `${type}-${i}`)}
-                            className="text-text hover:text-accent transition-colors bg-transparent border-none cursor-pointer p-0.5 shrink-0"
-                            title="Copy"
-                          >
-                            {copiedKey === `${type}-${i}` ? <Check size={12} className="text-green-400" /> : <Copy size={12} />}
-                          </button>
-                        </div>
-                      ))}
+                    <div className="text-[10px] font-semibold tracking-wider text-text uppercase mb-1.5">
+                      {type} Records
                     </div>
+                    {rows.length > 0 ? (
+                      <div className="overflow-x-auto rounded-lg border border-borderColor">
+                        <table className="w-full text-xs border-collapse">
+                          <thead>
+                            <tr className="bg-backgroundColor">
+                              {columns.map(col => (
+                                <th
+                                  key={col}
+                                  className="text-left font-semibold text-text uppercase tracking-wide px-3 py-2 border-b border-borderColor whitespace-nowrap"
+                                >
+                                  {col}
+                                </th>
+                              ))}
+                              <th className="px-3 py-2 border-b border-borderColor w-8" />
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {rows.map((row, i) => {
+                              const rowKey = `${type}-${i}`
+                              const copyValue = columns.map(col => row[col]).join(' ')
+                              return (
+                                <tr key={i} className="hover:bg-backgroundColor transition-colors">
+                                  {columns.map(col => (
+                                    <td
+                                      key={col}
+                                      className="px-3 py-2 border-b border-borderColor last:border-b-0 text-textHeader font-mono align-top break-all"
+                                    >
+                                      {row[col]}
+                                    </td>
+                                  ))}
+                                  <td className="px-3 py-2 border-b border-borderColor align-top">
+                                    <button
+                                      onClick={() => copy(copyValue, rowKey)}
+                                      className="text-text hover:text-accent transition-colors bg-transparent border-none cursor-pointer p-0.5"
+                                      title="Copy row"
+                                    >
+                                      {copiedKey === rowKey ? <Check size={12} className="text-green-400" /> : <Copy size={12} />}
+                                    </button>
+                                  </td>
+                                </tr>
+                              )
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-text m-0 px-3 py-1.5 rounded-lg bg-backgroundColor border border-borderColor">
+                        {DNSSEC_RECORD_TYPES.has(type) && !dnssecSigned
+                          ? 'DNSSEC is not enabled for this domain.'
+                          : `No ${type} records found.`}
+                      </p>
+                    )}
                   </div>
                 )
-              ))}
-
-              {!rdap.nameservers?.length && liveDns && LIVE_RECORD_TYPES.every(t => !liveDns[t]?.length) && (
-                <p className="text-xs text-text m-0">No DNS records found.</p>
-              )}
+              })}
             </div>
           </SectionCard>
         </div>
