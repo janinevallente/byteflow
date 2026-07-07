@@ -14,6 +14,7 @@ import {
   Globe,
   CircleX,
 } from 'lucide-react'
+import { SyncLoader } from 'react-spinners'
 import PageHeader from '../components/ui/PageHeader'
 import { getRequest } from '../api/apiClient'
 
@@ -445,6 +446,14 @@ export default function WhoisLookup() {
         </div>
       )}
 
+      {/*Data loader*/}
+      {!rdap && loading && (
+        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-3">
+          <SyncLoader color="#3B5BDB" size={13} />
+          <p className="text-sm text-textHeader font-medium m-0 pt-2">Fetching Data...</p>
+        </div>
+      )}
+      
       {/* Results */}
       {rdap && (
         <div className="flex flex-col gap-4">
