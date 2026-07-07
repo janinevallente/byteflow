@@ -1,7 +1,7 @@
 {
   "name": "byteflow",
   "private": true,
-  "version": "2.13.41",
+  "version": "2.14.47",
   "type": "module",
   "scripts": {
     "dev": "vite",
