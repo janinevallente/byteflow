@@ -69,6 +69,7 @@ const categories = [
     label: 'Network',
     tools: [
       { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
+      { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
       { id: 'whois-lookup', label: 'WHOIS Lookup', icon: ScrollText },
     ],
   },

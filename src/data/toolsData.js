@@ -14,6 +14,7 @@ import {
   Columns,
   BoxSelect,
   Globe2,
+  Globe,
   KeyRound,
   Hash,
   Lock,
@@ -125,11 +126,17 @@ export const tools = [
     label: 'IP Address Lookup',
     description: 'Instantly view configuration details, ISP, and geological metrics for your current public IP address alongside an interactive location map.',
   },
+    {
+    id: 'dns-lookup',
+    icon: Globe,
+    label: 'DNS Lookup',
+    description: 'Query A, AAAA, CNAME, MX, NS, TXT, SOA, PTR, SRV, CAA, DS, and DNSKEY records for any domain via DNS-over-HTTPS.',
+  },
   {
     id: 'whois-lookup',
     icon: ScrollText,
     label: 'WHOIS Lookup',
-    description: 'Look up domain registration data via RDAP — domain info, registrar, registrant contact, and live DNS records.',
+    description: 'Look up domain registration data via RDAP — domain info, registrar, and registrant contact.',
   },
 
   // Security
