@@ -326,9 +326,7 @@ export default function DnsLookup() {
       {/* Empty state */}
       {!liveDns && !loading && !error && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="bg-accentBg border border-accentBorder rounded-2xl p-4 mb-4 text-accent">
-            <Globe size={28} />
-          </div>
+          <Globe size={32} className="text-accent mx-auto mb-2.5 sm:mb-3 sm:size-10" />
           <p className="text-sm text-textHeader font-medium m-0 mb-1">Enter a domain to get started</p>
           <p className="text-xs text-text m-0 max-w-xs">
             Try <code className="font-mono text-accent">cloudflare.com</code> or any domain you want to inspect.
