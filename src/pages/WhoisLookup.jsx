@@ -12,7 +12,7 @@ import {
   ChevronUp,
   Globe,
   CircleX,
-  Network,
+  MapPin,
 } from 'lucide-react'
 import { SyncLoader } from 'react-spinners'
 import PageHeader from '../components/ui/PageHeader'
@@ -82,6 +82,64 @@ function isRedacted(value) {
 
 function realValue(value) {
   return isRedacted(value) ? undefined : value
+}
+
+// Capitalize first letter of each word
+function capitalizeWords(str) {
+  if (!str) return str
+  return str.split(' ').map(word => {
+    if (word.length === 0) return word
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  }).join(' ')
+}
+
+// Get color for status based on status type
+function getStatusColor(status) {
+  const statusLower = status.toLowerCase()
+  
+  // Active/OK statuses - green
+  if (statusLower.includes('ok') || 
+      statusLower.includes('active') || 
+      statusLower.includes('verified')) {
+    return 'bg-green-500/10 text-green-400 border-green-500/20'
+  }
+  
+  // Prohibited/Restricted statuses - red
+  if (statusLower.includes('prohibited') || 
+      statusLower.includes('blocked') || 
+      statusLower.includes('locked') ||
+      statusLower.includes('hold')) {
+    return 'bg-red-500/10 text-red-400 border-red-500/20'
+  }
+  
+  // Pending/In progress statuses - yellow
+  if (statusLower.includes('pending') || 
+      statusLower.includes('processing') || 
+      statusLower.includes('in progress') ||
+      statusLower.includes('hold')) {
+    return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
+  }
+  
+  // Transfer related - purple
+  if (statusLower.includes('transfer') || 
+      statusLower.includes('change')) {
+    return 'bg-purple-500/10 text-purple-400 border-purple-500/20'
+  }
+  
+  // Deletion/Expiry related - orange
+  if (statusLower.includes('delete') || 
+      statusLower.includes('expir') || 
+      statusLower.includes('expired')) {
+    return 'bg-orange-500/10 text-orange-400 border-orange-500/20'
+  }
+  
+  // Auto renew - cyan
+  if (statusLower.includes('auto renew')) {
+    return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'
+  }
+  
+  // Default - blue
+  return 'bg-blue-500/10 text-blue-400 border-blue-500/20'
 }
 
 async function fetchRdapJson(url, signal) {
@@ -508,8 +566,8 @@ export default function WhoisLookup() {
   const registrant = rdapData ? findEntity(rdapData.entities, 'registrant') : null
   const registrantVcard = registrant ? parseVcard(registrant.vcardArray) : {}
   const registrantFields = {
-    fn: realValue(registrantVcard.fn),
-    org: realValue(registrantVcard.org),
+    fn: registrantVcard.fn,
+    org: registrantVcard.org,
     email: realValue(registrantVcard.email),
     tel: realValue(registrantVcard.tel),
     adr: realValue(registrantVcard.adr),
@@ -524,6 +582,12 @@ export default function WhoisLookup() {
 
   const isIPQuery = queryType === 'ip'
   const ipNetwork = rdapData?.ipNetwork || rdapData
+
+  // Format status with capitalization
+  const formatStatus = (status) => {
+    if (!status) return status
+    return capitalizeWords(status.replace(/_/g, ' '))
+  }
 
   return (
     <div className="mx-auto px-5 md:px-10 py-8 font-poppins">
@@ -578,7 +642,7 @@ export default function WhoisLookup() {
               ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' 
               : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
           }`}>
-            {isIPQuery ? <Network size={12} /> : <Globe size={12} />}
+            {isIPQuery ? <MapPin size={12} /> : <Globe size={12} />}
             {isIPQuery ? 'IP Address' : 'Domain Name'}
           </span>
         </div>
@@ -616,7 +680,28 @@ export default function WhoisLookup() {
               <SectionCard icon={ScrollText} title="Domain Information">
                 <InfoRow label="Domain Name" value={rdapData.ldhName ?? queryInput} mono copyable onCopy={copy} copiedKey={copiedKey} fieldKey="domain-name" />
                 <InfoRow label="Registry Domain ID" value={rdapData.handle} mono copyable onCopy={copy} copiedKey={copiedKey} fieldKey="domain-handle" />
-                <InfoRow label="Status" value={rdapData.status?.join(', ')} />
+                
+                {/* Status with colorful badges */}
+                {rdapData.status && rdapData.status.length > 0 && (
+                  <div className="flex items-start gap-3 py-2 border-b border-borderColor last:border-b-0">
+                    <span className="text-xs text-text shrink-0 pt-0.5">Status</span>
+                    <div className="flex-1 flex flex-wrap gap-1.5 justify-end">
+                      {rdapData.status.map((status, index) => {
+                        const formattedStatus = formatStatus(status)
+                        const colorClass = getStatusColor(status)
+                        return (
+                          <span
+                            key={index}
+                            className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${colorClass}`}
+                          >
+                            {formattedStatus}
+                          </span>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+                
                 <InfoRow label="Registered On" value={registeredDate} />
                 <InfoRow label="Expires On" value={expiresDate} />
                 <InfoRow label="Last Updated" value={updatedDate} />
