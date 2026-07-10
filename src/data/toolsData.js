@@ -13,7 +13,7 @@ import {
   Grid,
   Columns,
   BoxSelect,
-  Globe2,
+  MapPin,
   Globe,
   KeyRound,
   Hash,
@@ -122,7 +122,7 @@ export const tools = [
   // Network
   {
     id: 'ip-lookup',
-    icon: Globe2,
+    icon: MapPin,
     label: 'IP Address Lookup',
     description: 'Instantly view configuration details, ISP, and geological metrics for your current public IP address alongside an interactive location map.',
   },

@@ -20,7 +20,7 @@ import {
   Columns,
   BoxSelect,
   Waves,
-  Globe2,
+  MapPin,
   Globe,
   ScrollText,
   KeyRound,
@@ -68,7 +68,7 @@ const categories = [
   {
     label: 'Network',
     tools: [
-      { id: 'ip-lookup', label: 'IP Address Lookup', icon: Globe2 },
+      { id: 'ip-lookup', label: 'IP Address Lookup', icon: MapPin },
       { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
       { id: 'whois-lookup', label: 'WHOIS Lookup', icon: ScrollText },
     ],
