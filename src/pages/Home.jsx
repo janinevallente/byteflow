@@ -2,7 +2,7 @@ import { tools } from "../data/toolsData"
 
 export default function Home({ onSelectTool }) {
   return (
-    <div className="mx-auto px-5 md:px-10 pt-14 pb-10 font-poppins">
+    <div className="mx-auto px-5 md:px-10 pt-8 pb-10 font-poppins">
       <div className="text-left mb-10">
         <h1 className="text-4xl font-bold mb-4 text-textHeader tracking-tight leading-tight">
           Byteflow
