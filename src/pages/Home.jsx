@@ -35,25 +35,25 @@ export default function Home({ onSelectTool }) {
       <div className="mx-auto mt-20 px-1 pt-10 border-t border-borderColor">
         <h2 className="text-xl font-bold text-textHeader mb-4">About</h2>
 
-        {/* <p className="text-text text-[14px] leading-relaxed mb-4 max-w-3xl">
-          Byteflow is a growing collection of developer utilities built for the modern web — from frontend
-          helpers and backend tools to domain diagnostics and support-focused workflows.
-        </p> */}
-        <p className="text-text text-[14px] leading-relaxed mb-4 max-w-3xl">
-          Byteflow is a growing collection of developer utilities built for the modern web.
+        <p className="text-text text-[14px] leading-relaxed mb-4 max-w-4xl">
+          Byteflow started as a handful of image and color utilities and has grown into a full toolbox for
+          the modern web — Tailwind helpers, network and performance diagnostics, security tools, and quick
+          references, all in one place.
         </p>
 
-        <p className="text-text text-[14px] leading-relaxed mb-4 max-w-3xl">
-          Everything runs entirely in your browser. No uploads, no accounts, no unnecessary tracking.
-          Your data stays on your machine, exactly where it should be.
+        <p className="text-text text-[14px] leading-relaxed mb-4 max-w-4xl">
+          Most tools run entirely in your browser: nothing you feed them ever leaves your machine. A few —
+          like DNS, WHOIS, IP, and PageSpeed Insights lookups — talk directly to the relevant public API
+          from your browser to fetch real data. Either way, requests never pass through Byteflow's own
+          servers, so there's nothing of yours to store, log, or lose.
         </p>
 
-        <p className="text-text text-[14px] leading-relaxed mb-8 max-w-3xl">
+        <p className="text-text text-[14px] leading-relaxed mb-8 max-w-4xl">
           Built from a love for the real web: open, experimental, and endlessly creative.
           Byteflow exists to make every tech enthusiast work a little faster, clearer, and more enjoyable.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 max-w-3xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 max-w-4xl">
           <div>
             <h3 className="text-sm font-semibold text-textHeader mb-2">Made by</h3>
             <a
