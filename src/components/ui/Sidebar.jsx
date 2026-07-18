@@ -29,6 +29,7 @@ import {
   Sun,
   Moon,
   Star,
+  Gauge
 } from 'lucide-react'
 import { useTheme } from '../themes/ThemeContext'
 
@@ -71,6 +72,7 @@ const categories = [
       { id: 'ip-lookup', label: 'IP Address Lookup', icon: MapPin },
       { id: 'dns-lookup', label: 'DNS Lookup', icon: Globe },
       { id: 'whois-lookup', label: 'WHOIS Lookup', icon: ScrollText },
+      { id: 'pagespeed-insights', label: 'PageSpeed Insights', icon: Gauge },
     ],
   },
   {

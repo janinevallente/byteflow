@@ -20,6 +20,7 @@ import {
   Lock,
   ScrollText,
   Star,
+  Gauge
 } from 'lucide-react'
 
 export const tools = [
@@ -137,6 +138,12 @@ export const tools = [
     icon: ScrollText,
     label: 'WHOIS Lookup',
     description: 'Look up domain registration data via RDAP — domain info, registrar, and registrant contact.',
+  },
+    {
+    id: 'pagespeed-insights',
+    icon: Gauge,
+    label: 'PageSpeed Insights',
+    description: 'Full Lighthouse + CrUX field data audit: performance, accessibility, best practices, and SEO with opportunities, diagnostics, and resource breakdowns.',
   },
 
   // Security

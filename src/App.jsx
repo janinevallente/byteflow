@@ -23,6 +23,7 @@ const TailwindShadowGenerator = lazy(() => import('./pages/TailwindShadowGenerat
 const IpLookup = lazy(() => import('./pages/IpLookup'))
 const DnsLookup = lazy(() => import('./pages/DnsLookup'))
 const WhoisLookup = lazy(() => import('./pages/WhoisLookup'))
+const PageSpeedInsights = lazy(() => import('./pages/PageSpeedInsights'))
 const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator'))
 const HashGenerator = lazy(() => import('./pages/HashGenerator'))
 const SymmetricCipher = lazy(() => import('./pages/SymmetricCipher'))
@@ -77,6 +78,7 @@ function App() {
       case 'dns-lookup': return <DnsLookup />
       case 'whois-lookup': return <WhoisLookup />
       case 'password-generator': return <PasswordGenerator />
+      case 'pagespeed-insights': return <PageSpeedInsights />
       case 'hash-generator': return <HashGenerator />
       case 'symmetric-cipher': return <SymmetricCipher />
       case 'tailwind-cheat-sheet': return <TailwindCheatSheet />
