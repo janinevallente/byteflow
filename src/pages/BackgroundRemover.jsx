@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Upload, Download, Image as ImageIcon, X } from 'lucide-react'
+import { Upload, Download, Image as ImageIcon, Trash2 } from 'lucide-react'
 import { removeBackground } from '@imgly/background-removal'
 import PageHeader from '../components/ui/PageHeader'
 
@@ -92,8 +92,12 @@ export default function BackgroundRemover() {
           <div className="flex items-center justify-between mb-3 sm:mb-4">
             <h2 className="text-xs sm:text-sm font-semibold text-textHeader m-0">Upload Image</h2>
             {image && (
-              <button onClick={reset} className="bg-transparent border-none cursor-pointer text-text text-[11px] sm:text-xs flex items-center gap-1 hover:text-accent transition-colors">
-                <X size={13} /> Clear
+              <button
+                onClick={reset}
+                title="Clear history"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <Trash2 size={12} /> Clear
               </button>
             )}
           </div>

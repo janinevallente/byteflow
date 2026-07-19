@@ -146,7 +146,7 @@ export default function EncryptDecrypt() {
               <button
                 onClick={clearAll}
                 title="Clear input"
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
+                 className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
               >
                 <Trash2 size={12} /> Clear
               </button>

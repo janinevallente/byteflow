@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Upload, Download, X, Loader2, RefreshCw } from 'lucide-react'
+import { Upload, Download, X, Loader2, RefreshCw, Trash2 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
 const FORMATS = ['PNG', 'JPEG', 'WebP', 'BMP', 'TIFF', 'AVIF']
@@ -208,8 +208,11 @@ export default function ImageConverter() {
                   + Add more
                 </button>
                 {files.length > 0 && (
-                  <button onClick={clearAll} className="bg-transparent border-none text-xs text-text cursor-pointer hover:text-accent transition-colors font-poppins flex items-center gap-1">
-                    <RefreshCw size={12} /> Clear all
+                  <button 
+                    onClick={clearAll} 
+                     className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
+                  >
+                    <Trash2 size={12} /> Clear all
                   </button>
                 )}
               </div>

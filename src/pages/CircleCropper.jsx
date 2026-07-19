@@ -10,7 +10,8 @@ import {
   Move,
   Maximize2,
   Minus,
-  Plus
+  Plus,
+  Trash2
 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
@@ -286,9 +287,9 @@ export default function CircleCropper() {
             {image && (
               <button
                 onClick={reset}
-                className="flex items-center gap-1 bg-transparent border-none cursor-pointer text-text text-xs hover:text-accent transition-colors"
+                 className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
               >
-                <X size={13} /> Clear
+                <Trash2 size={13} /> Clear
               </button>
             )}
           </div>

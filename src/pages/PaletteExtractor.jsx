@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Image as ImageIcon, Upload, X, Copy, Check } from 'lucide-react'
+import { Image as ImageIcon, Upload, X, Copy, Check, Trash2 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 import { rgbToHex } from '../utils/colorUtils'
 
@@ -139,8 +139,11 @@ export default function PaletteExtractor() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-textHeader m-0">Upload Image</h2>
             {image && (
-              <button onClick={reset} className="bg-transparent border-none cursor-pointer text-text text-xs flex items-center gap-1 hover:text-accent transition-colors">
-                <X size={13} /> Clear
+              <button 
+                onClick={reset} 
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <Trash2 size={13} /> Clear
               </button>
             )}
           </div>

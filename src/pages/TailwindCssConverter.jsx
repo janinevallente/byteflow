@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { ArrowLeftRight, Copy, Check, Shuffle, RefreshCw, AlertCircle, X } from 'lucide-react'
+import { ArrowLeftRight, Copy, Check, Shuffle, RefreshCw, AlertCircle, X, Trash2 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
 // Core client-side translation engine
@@ -336,9 +336,9 @@ export default function TailwindCssConverter() {
 
         <button
           onClick={clearAll}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-accentBg text-accent border border-accentBorder cursor-pointer hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <X size={13} /> Clear All
+          <Trash2 size={13} /> Clear All
         </button>
       </div>
 

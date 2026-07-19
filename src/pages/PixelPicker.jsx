@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
-import { Pipette, Upload, Copy, Check, X } from 'lucide-react'
+import { Pipette, Upload, Copy, Check, X, Trash2 } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 
 function rgbToHsl(r, g, b) {
@@ -156,9 +156,9 @@ export default function PixelPicker() {
             {image && (
               <button
                 onClick={reset}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm border border-borderColor text-text bg-transparent cursor-pointer hover:text-accent hover:border-accent transition-colors ml-auto"
+                 className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm bg-errorBg text-error border border-errorBorder cursor-pointer hover:opacity-80 transition-opacity ml-auto"
               >
-                <X size={14} /> Clear
+                <Trash2 size={14} /> Clear
               </button>
             )}
             <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
