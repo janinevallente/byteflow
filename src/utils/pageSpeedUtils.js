@@ -1,7 +1,7 @@
 // PageSpeed Insights (v5) helpers — API key storage, request construction,
 // and parsing of the (large, deeply nested) Lighthouse + CrUX payload into
 // flat structures the UI can render without re-walking the raw JSON.
-export const PSI_ENDPOINT = import.meta.env.VITE_PAGESPEED_API
+export const PAGESPEED_API = import.meta.env.VITE_PAGESPEED_API
 export const PAGESPEED_API_KEY = import.meta.env.VITE_PAGESPEED_API_KEY || ''
 
 export const CATEGORY_IDS = ['performance', 'accessibility', 'best-practices', 'seo']
@@ -26,7 +26,7 @@ export function buildPsiUrl(targetUrl, strategy, apiKey) {
   params.append('strategy', strategy)
   CATEGORY_IDS.forEach(c => params.append('category', c))
   if (apiKey) params.append('key', apiKey)
-  return `${PSI_ENDPOINT}?${params.toString()}`
+  return `${PAGESPEED_API}?${params.toString()}`
 }
 
 // Formatting
