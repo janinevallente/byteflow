@@ -184,6 +184,38 @@ function DetailsTable({ table }) {
   )
 }
 
+// Renders Lighthouse audit description text with any embedded markdown
+// links (e.g. "... [Learn more](https://web.dev/...)") turned into real,
+// clickable anchors instead of being stripped down to plain text.
+function LinkedText({ text }) {
+  if (!text) return null
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g
+  const nodes = []
+  let lastIndex = 0
+  let match
+  let key = 0
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index))
+    nodes.push(
+      <a
+        key={key++}
+        href={match[2]}
+        target="_blank"
+        rel="noreferrer"
+        onClick={e => e.stopPropagation()}
+        className="text-accent underline hover:no-underline"
+      >
+        {match[1]}
+      </a>
+    )
+    lastIndex = match.index + match[0].length
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex))
+
+  return <>{nodes}</>
+}
+
 function AuditRow({ audit }) {
   const [open, setOpen] = useState(false)
   const bucket = scoreToBucket(audit.score)
@@ -194,7 +226,6 @@ function AuditRow({ audit }) {
     : audit.details?.overallSavingsBytes
       ? `${formatBytes(audit.details.overallSavingsBytes)} savings`
       : null
-  const description = (audit.description || '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 
   return (
     <div className="border-b border-borderColor last:border-b-0">
@@ -209,7 +240,11 @@ function AuditRow({ audit }) {
             {audit.displayValue && <span className="text-xs text-text font-mono">{audit.displayValue}</span>}
             {savings && <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-accentBg text-accent">{savings}</span>}
           </div>
-          {description && <p className="text-xs text-text m-0 mt-1 leading-relaxed">{description}</p>}
+          {audit.description && (
+            <p className="text-xs text-text m-0 mt-1 leading-relaxed">
+              <LinkedText text={audit.description} />
+            </p>
+          )}
         </div>
         {table && (open ? <ChevronUp size={14} className="text-text shrink-0 mt-0.5" /> : <ChevronDown size={14} className="text-text shrink-0 mt-0.5" />)}
       </button>
@@ -568,7 +603,7 @@ export default function PageSpeedInsights() {
                       <p className="text-sm font-semibold text-textHeader m-0 mb-1">{pack.title}</p>
                       <ul className="text-xs text-text m-0 pl-4 flex flex-col gap-1">
                         {Object.entries(pack.descriptions || {}).map(([auditId, desc]) => (
-                          <li key={auditId}>{desc.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')}</li>
+                          <li key={auditId}><LinkedText text={desc} /></li>
                         ))}
                       </ul>
                     </div>
