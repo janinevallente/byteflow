@@ -594,7 +594,6 @@ export default function WhoisLookup() {
       <PageHeader
         title="WHOIS Lookup"
         description="Look up domain registration via RDAP — works with both domain names and IPv4 addresses."
-        badge="Beta"
       />
 
       {/* Privacy notice */}

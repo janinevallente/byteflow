@@ -194,7 +194,6 @@ export default function DnsLookup() {
       <PageHeader
         title="DNS Lookup"
         description="Query A, AAAA, CNAME, MX, NS, TXT, SOA, PTR, SRV, CAA, DS, and DNSKEY records for any domain."
-        badge="Beta"
       />
 
       {/* Privacy notice */}

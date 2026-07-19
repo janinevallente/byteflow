@@ -468,7 +468,6 @@ export default function PageSpeedInsights() {
       <PageHeader
         title="PageSpeed Insights"
         description="Full Lighthouse + Chrome UX Report diagnostics for any page — performance, accessibility, best practices, and SEO."
-        badge="Beta"
       />
 
       {/* API key notice — configured once by the developer via .env, never entered by end users */}
